@@ -25,6 +25,7 @@ public class ResponseSTORE001001 : BaseResponse
         //todo:用户验证的复用.
         DZMembershipProvider p = new DZMembershipProvider();
         BLLBusiness bllBusiness = new BLLBusiness();
+        Dianzhu.DAL.DALBusinessUser dalBusinessUser = new Dianzhu.DAL.DALBusinessUser();
 
         try
         {
@@ -60,8 +61,8 @@ public class ResponseSTORE001001 : BaseResponse
             }
             try
             {
-                Business b = new Business();
-                b.Owner = member;
+                Business b = (Business)new BusinessService(dalBusinessUser).Create("company", userID.ToString());
+                
 
                 bllBusiness.SaveOrUpdate(b);
 

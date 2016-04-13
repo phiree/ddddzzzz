@@ -52,48 +52,58 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agent\Agent.cs" />
-    <Compile Include="Complaint.cs" />
-    <Compile Include="Advertisement.cs" />
+    <Compile Include="IdentityAccess\DZMembership3rd.cs" />
+    <Compile Include="Reception\ChatPushService.cs" />
+    <Compile Include="Reception\ChatUserStatus.cs" />
+    <Compile Include="Reception\CustomerService.cs" />
+    <Compile Include="Reception\ChatDD.cs" />
+    <Compile Include="Reception\Chat.cs" />
+    <Compile Include="Reception\ChatNotice.cs" />
+    <Compile Include="Reception\ChatReAssign.cs" />
+    <Compile Include="Resource\Agent\Agent.cs" />
+    <Compile Include="ServiceOrder\Complaint.cs" />
+    <Compile Include="Promote\Advertisement.cs" />
     <Compile Include="IdentityAccess\MembershipFactory.cs" />
     <Compile Include="IdentityAccess\RoleMember.cs" />
     <Compile Include="Reception\IMUserStatus.cs" />
-    <Compile Include="City.cs" />
+    <Compile Include="Shared\City.cs" />
+    <Compile Include="Resource\Business\BusinessUser.cs" />
     <Compile Include="Resource\ServiceOpenTimeForDay.cs" />
+    <Compile Include="Reception\Customer.cs" />
     <Compile Include="ServiceOrder\ServiceOpenTimeForDaySnapShotForOrder.cs" />
     <Compile Include="ServiceOrder\ServiceOrderAppraise.cs" />
     <Compile Include="ServiceOrder\ServiceOrderDetail.cs" />
     <Compile Include="ServiceOrder\ServiceOrderFactory.cs" />
     <Compile Include="ServiceOrder\ServiceOrderPushedService.cs" />
     <Compile Include="ServiceOrder\ServiceSnapShotForOrder.cs" />
-    <Compile Include="StaffServiceType.cs" />
-    <Compile Include="OrderAssignment.cs" />
-    <Compile Include="PaymentLog.cs" />
-    <Compile Include="Area.cs" />
-    <Compile Include="CashTIcketAssignDetail.cs" />
-    <Compile Include="CashTicketTemplate.cs" />
-    <Compile Include="DeviceBind.cs" />
+    <Compile Include="Resource\StaffServiceType.cs" />
+    <Compile Include="ServiceOrder\OrderAssignment.cs" />
+    <Compile Include="Payment\PaymentLog.cs" />
+    <Compile Include="Shared\Area.cs" />
+    <Compile Include="Promote\CashTIcketAssignDetail.cs" />
+    <Compile Include="Promote\CashTicketTemplate.cs" />
+    <Compile Include="Reception\DeviceBind.cs" />
     <Compile Include="IdentityAccess\DZRole.cs" />
     <Compile Include="Resource\DZService.cs" />
-    <Compile Include="DZTag.cs" />
+    <Compile Include="Resource\DZTag.cs" />
     <Compile Include="Enums.cs" />
-    <Compile Include="Business.cs" />
-    <Compile Include="CashTicketCreateRecord.cs" />
-    <Compile Include="CashTicket.cs" />
+    <Compile Include="Resource\Business\Business.cs" />
+    <Compile Include="Promote\CashTicketCreateRecord.cs" />
+    <Compile Include="Promote\CashTicket.cs" />
     <Compile Include="IdentityAccess\DZMembership.cs" />
-    <Compile Include="Paylog.cs" />
+    <Compile Include="Payment\Paylog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CashTicketAssignRecord.cs" />
-    <Compile Include="Reception\Reception.cs" />
+    <Compile Include="Promote\CashTicketAssignRecord.cs" />
+    <Compile Include="Reception\ChatMedia.cs" />
     <Compile Include="Reception\ReceptionStatus.cs" />
     <Compile Include="Resource\ServiceOpenTime.cs" />
-    <Compile Include="Payment.cs" />
-    <Compile Include="ServiceOrderStateChangeHis.cs" />
-    <Compile Include="ServiceProperty.cs" />
+    <Compile Include="Payment\Payment.cs" />
+    <Compile Include="ServiceOrder\ServiceOrderStateChangeHis.cs" />
+    <Compile Include="Resource\ServiceProperty.cs" />
     <Compile Include="ServiceOrder\ServiceOrder.cs" />
-    <Compile Include="ServiceType.cs" />
-    <Compile Include="ServiceTypePropertyValue.cs" />
-    <Compile Include="Staff.cs" />
+    <Compile Include="Resource\ServiceType.cs" />
+    <Compile Include="Resource\ServiceTypePropertyValue.cs" />
+    <Compile Include="Resource\Staff.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
@@ -102,9 +112,7 @@
   <ItemGroup>
     <Content Include="ServiceOrder\UL.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resource\Agent\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

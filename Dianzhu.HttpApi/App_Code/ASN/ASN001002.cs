@@ -65,7 +65,7 @@ public class ResponseASN001002 : BaseResponse
                     return;
                 }
 
-                if (staff.Belongto.Owner.Id != merchantID)
+                if (staff.Belongto.Owner.MemberId != merchantID.ToString())
                 {
                     this.state_CODE = Dicts.StateCode[1];
                     this.err_Msg = "该商户没有该员工！";

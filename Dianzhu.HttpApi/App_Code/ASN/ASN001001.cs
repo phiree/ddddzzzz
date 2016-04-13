@@ -69,7 +69,7 @@ public class ResponseASN001001 : BaseResponse
                     return;
                 }
 
-                if (store.Owner.Id != merchantID)
+                if (store.Owner.MemberId != merchantID.ToString())
                 {
                     this.state_CODE = Dicts.StateCode[1];
                     this.err_Msg = "您没有该店铺！";

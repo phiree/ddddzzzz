@@ -11,8 +11,23 @@ namespace Dianzhu.Model
     /// </summary>
     public class Business_Abs
     {
-        public Business_Abs()
+        public static Business_Abs Create(string type, BusinessUser businessUser)
         {
+            
+            switch (type)
+            {
+                case "private":
+                    return new BusinessIndividual(businessUser);
+                     
+                case "company":
+                    return new Business(businessUser);
+                     
+                default:throw new NotImplementedException("未知的店铺类型");
+            }
+        }
+        public Business_Abs(BusinessUser owner)
+        {
+            Owner = owner;
             Enabled = true;
             CreatedTime = DateTime.Now;
         }
@@ -46,7 +61,7 @@ namespace Dianzhu.Model
         /// <summary>
         /// 商户所有者.
         /// </summary>
-        public virtual DZMembership Owner { get; set; }
+        public virtual BusinessUser  Owner { get; protected set; }
 
         /// <summary>
         /// 店铺是否可用
@@ -64,7 +79,7 @@ namespace Dianzhu.Model
     /// </summary>
     public class Business : Business_Abs
     {
-        public Business()
+        public Business(BusinessUser owner):base( owner)
         {
             AreaServiceTo = new List<Area>();
             BusinessImages = new List<BusinessImage>();
@@ -507,6 +522,7 @@ namespace Dianzhu.Model
     /// </summary>
     public class BusinessIndividual : Business_Abs
     {
-
+        public BusinessIndividual(BusinessUser owner) : base(owner)
+        { }
     }
 }

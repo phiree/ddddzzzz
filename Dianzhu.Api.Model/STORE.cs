@@ -9,6 +9,10 @@ namespace Dianzhu.Api.Model
 {
     public class RespDataSTORE_storeObj
     {
+        public RespDataSTORE_storeObj()
+        {
+
+        }
         //public string merchantID { get; set; }
         public string userID { get; set; }
         public string alias { get; set; }
@@ -24,7 +28,7 @@ namespace Dianzhu.Api.Model
         public string url { get; set; }
         public string vintage { get; set; }
         public string headCount { get; set; }
-        public RespDataSTORE_storeObj Adapt(Business business)
+        public RespDataSTORE_storeObj Adapt(Business business,DZMembership businessUser)
         {
             //if (business.Owner.Id != Guid.Empty)
             //{
@@ -55,9 +59,10 @@ namespace Dianzhu.Api.Model
             }
             else
             {
-                if (business.Owner.Id != Guid.Empty)
+                if (!string.IsNullOrEmpty(business.Owner.MemberId))
                 {
-                    this.linkMan = business.Owner.NickName != null ? business.Owner.NickName : "";
+                    
+                    this.linkMan =businessUser== null ? "":businessUser.NickName;
                 }
                 else
                 {

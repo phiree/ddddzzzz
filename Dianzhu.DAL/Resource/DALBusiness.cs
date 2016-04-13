@@ -57,7 +57,7 @@ namespace Dianzhu.DAL
 
         public Business GetBusinessByIdAndOwner(Guid Id, Guid ownerId)
         {
-            return Session.QueryOver<Business>().Where(x => x.Id == Id).And(x => x.Owner.Id == ownerId).SingleOrDefault();
+            return Session.QueryOver<Business>().Where(x => x.Owner.MemberId == Id.ToString()).And(x => x.Id == ownerId).SingleOrDefault();
         }
         /// <summary>
         /// 全部已经启用的商铺
@@ -65,7 +65,7 @@ namespace Dianzhu.DAL
         /// <param name="ownerId"></param>
         public IList<Business> GetBusinessListByOwner(Guid ownerId)
         {
-            return Session.QueryOver<Business>().Where(x => x.Owner.Id == ownerId).And(x => x.Enabled == true).List();
+            return Session.QueryOver<Business>().Where(x => x.Owner.MemberId == ownerId.ToString()).And(x => x.Enabled == true).List();
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace Dianzhu.DAL
 
          public int GetEnableSum(DZMembership member)
         {
-            return Session.QueryOver<Business>().Where(x => x.Owner == member).And(x => x.Enabled == true).RowCount();
+            return Session.QueryOver<Business>().Where(x => x.Owner.MemberId == member.ToString()).And(x => x.Enabled == true).RowCount();
         }
     }
 }

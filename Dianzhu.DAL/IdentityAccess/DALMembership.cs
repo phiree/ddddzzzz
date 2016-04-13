@@ -143,28 +143,10 @@ namespace Dianzhu.DAL
         }
 
 
-        public Model.BusinessUser GetBusinessUser(Guid id)
-        {
-            IQuery query = Session.CreateQuery("select m from  BusinessUser as m where Id='" + id + "'");
-            Model.BusinessUser member = query.UniqueResult<Model.BusinessUser>();
-            return member;
-        }
+        
         public IList<Model.DZMembership> GetAll()
         {
             return GetAll<Model.DZMembership>();
-        }
-        public Model.BusinessUser CreateBusinessUser(string username, string password, Model.Business business)
-        {
-            
-            Model.BusinessUser member =  new Model.BusinessUser
-            { UserName = username, Password = password, TimeCreated = DateTime.Now, BelongTo = business,
-             LastLoginTime=DateTime.Now,
-            RegisterValidateCode=Guid.NewGuid().ToString(),IsRegisterValidated=false};
-            Save(member);
-
-            //send validation email
-
-            return member;
         }
         
         

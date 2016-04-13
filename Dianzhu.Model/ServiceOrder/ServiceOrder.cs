@@ -94,7 +94,7 @@ namespace Dianzhu.Model
         public virtual string GetSummaryString()
         {
             return string.Format("订单状态:{5} 用户:{0},定金金额:{1},服务项:{2},商家:{3}, 服务时间:{4}",
-                Customer.DisplayName,DepositAmount, Title,ServiceBusinessName,TargetTime,GetFriendlyStatus()
+                Customer.Name,DepositAmount, Title,ServiceBusinessName,TargetTime,GetFriendlyStatus()
                 );
         }
         #endregion
@@ -161,7 +161,7 @@ namespace Dianzhu.Model
         /// <summary>
         /// 客户 
         /// </summary>
-        public virtual DZMembership Customer { get; set; }
+        public virtual Customer Customer { get; set; }
 
         /// <summary>
         /// 下单时间
@@ -260,7 +260,7 @@ namespace Dianzhu.Model
 
         
         //创建此订单的客服.
-        public virtual DZMembership CustomerService { get; set; }
+        public virtual CustomerService CustomerService { get; set; }
 
          
         

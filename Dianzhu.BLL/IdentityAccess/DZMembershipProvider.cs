@@ -67,19 +67,7 @@ namespace Dianzhu.BLL
 
         public override MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out MembershipCreateStatus status)
         {
-            DZMembership user = new DZMembership
-            {
-                UserName = username,
-                Password = FormsAuthentication.HashPasswordForStoringInConfigFile(password, "MD5"),
-                TimeCreated = DateTime.Now
-            };
-            DALMembership.CreateUser(user);
-            MembershipUser mu = new MembershipUser("DZMembershipProvider",
-                 username, user.Id, "", "", string.Empty,
-                 true, true, DateTime.Now,
-                 DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now);
-            status = MembershipCreateStatus.Success;
-            return mu;
+            throw new NotImplementedException();
         }
 
         public override bool DeleteUser(string username, bool deleteAllRelatedData)
@@ -219,22 +207,12 @@ namespace Dianzhu.BLL
         #endregion
 
         #region additional method for user
-        public BusinessUser GetBusinessUser(Guid id)
-        {
-            return DALMembership.GetBusinessUser(id);
-        }
+        
         public IList<DZMembership> GetAll()
         {
             return DALMembership.GetAll();
         }
-        public DZMembership CreateBusinessUser(string username, string password, Business b)
-        {
-            string encrypted = FormsAuthentication.HashPasswordForStoringInConfigFile(password, "MD5");
-            DZMembership member = DALMembership.CreateBusinessUser(username, encrypted, b);
-            
-            
-            return member;
-        }
+       
         public bool SendValidationMail(string to,string verifyUrl)
         {
             string subjecst = "一点办验证邮件";
@@ -323,13 +301,7 @@ namespace Dianzhu.BLL
             else
             {
                 var password_cred = FormsAuthentication.HashPasswordForStoringInConfigFile(password, "MD5");
-                DZMembership newMember = new DZMembership { UserName = savedUserName, Password = password_cred,
-                  Email=userEmail,
-                   Phone=userPhone,
-                   NickName=savedUserName,
-                    PlainPassword=password,
-                     UserNameForOpenFire=userNameForOpenfire
-                };
+                DZMembership newMember = new DZMembership(savedUserName, password_cred, userEmail, userPhone);
                 if (validateCode != Guid.Empty)
                 {
                     newMember.RegisterValidateCode = validateCode.ToString();

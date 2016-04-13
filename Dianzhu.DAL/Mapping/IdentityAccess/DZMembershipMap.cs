@@ -18,13 +18,12 @@ namespace Dianzhu.DAL.Mapping
             Map(x => x.TimeCreated);
             Map(x => x.LastLoginTime);
             Map(x => x.LoginTimes);
-            Map(x=>x.NickName);
-            Map(x => x.Address);
+            
             Map(x => x.Email);//.Unique();
             Map(x => x.Phone);//.Unique();
             Map(x => x.IsRegisterValidated);
             Map(x => x.RegisterValidateCode);
-            Map(x => x.UserNameForOpenFire);
+            
             Map(x => x.RecoveryCode);
             Map(x => x.AvatarUrl);
             Map(x => x.UserType);
@@ -33,21 +32,14 @@ namespace Dianzhu.DAL.Mapping
         }
                
     }
-    public class BusinessUserMap : SubclassMap<BusinessUser>
+    public class BusinessUserMap : ClassMap<BusinessUser>
     {
         public BusinessUserMap()
         {
-            References<Business>(x => x.BelongTo);
+            Id(x => x.MemberId); 
         }
     }
-    public class CustomerServiceMap : SubclassMap<CustomerService>
-    {
-        public CustomerServiceMap()
-        {
-            Map(x => x.CSId);
-         }
-    }
-
+    
     public class DZMembershipWeChatMap : SubclassMap<DZMembershipWeChat>
     {
         public DZMembershipWeChatMap()
@@ -58,7 +50,7 @@ namespace Dianzhu.DAL.Mapping
             Map(x => x.OpenId);
             Map(x => x.Scope);
             Map(x => x.Unionid);
-            Map(x => x.NickName);
+          
             Map(x => x.Sex);
             Map(x => x.Province);
             Map(x => x.City);
@@ -76,7 +68,7 @@ namespace Dianzhu.DAL.Mapping
             Map(x => x.Ret);
             Map(x => x.Msg);
             Map(x => x.IsLost);
-            Map(x => x.NickName);
+            
             Map(x => x.Gender);
             Map(x => x.Province);
             Map(x => x.City);

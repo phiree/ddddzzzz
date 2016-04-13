@@ -198,7 +198,7 @@ public class ResponseU3RD014008:BaseResponse
         DZMembershipWeChat member = (DZMembershipWeChat)bllMember.GetUserByWechatOpenId(tokenObj.openid);
         if (member == null)
         {
-            member = (DZMembershipWeChat)DZMembership.Create(enum_LoginType.WeChat);
+            member = (DZMembershipWeChat)DZMembership.Create3rdUser(enum_LoginType.WeChat);
         }
         else
         {
@@ -235,7 +235,7 @@ public class ResponseU3RD014008:BaseResponse
         DZMembershipSinaWeibo member = (DZMembershipSinaWeibo)bllMember.GetUserBySinaWeiboUId(long.Parse(tokenInfo.uid));
         if (member == null)
         {
-            member = (DZMembershipSinaWeibo)DZMembership.Create(enum_LoginType.SinaWeiBo);
+            member = (DZMembershipSinaWeibo)DZMembership.Create3rdUser(enum_LoginType.SinaWeiBo);
         }
         else
         {
@@ -297,7 +297,7 @@ public class ResponseU3RD014008:BaseResponse
         DZMembershipQQ member = (DZMembershipQQ)bllMember.GetUserByQQOpenId(openidObj.openid);
         if (member == null)
         {
-            member = (DZMembershipQQ)DZMembership.Create(enum_LoginType.TencentQQ);
+            member = (DZMembershipQQ)DZMembership.Create3rdUser(enum_LoginType.TencentQQ);
         }
         else
         {

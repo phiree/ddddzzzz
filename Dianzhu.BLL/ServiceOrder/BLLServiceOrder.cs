@@ -89,7 +89,7 @@ namespace Dianzhu.BLL
             return DALServiceOrder.GetListForBusiness(business, pageNum, pageSize, out totalAmount);
         }
 
-        public IList<ServiceOrder> GetListForCustomer(DZMembership customer, int pageNum, int pageSize, out int totalAmount)
+        public IList<ServiceOrder> GetListForCustomer(Customer customer, int pageNum, int pageSize, out int totalAmount)
         {
             return DALServiceOrder.GetListForCustomer(customer, pageNum, pageSize, out totalAmount);
         }
@@ -99,7 +99,7 @@ namespace Dianzhu.BLL
             DALServiceOrder.Delete(order);
         }
 
-        public virtual ServiceOrder GetDraftOrder(DZMembership c, DZMembership cs)
+        public virtual ServiceOrder GetDraftOrder(Customer c, CustomerService cs)
         {
             return DALServiceOrder.GetDraftOrder(c, cs);
         }
@@ -107,7 +107,7 @@ namespace Dianzhu.BLL
         {
             return DALServiceOrder.GetOrderListByDate(service, date);
         }
-        public ServiceOrder GetOrderByIdAndCustomer(Guid Id, DZMembership customer)
+        public ServiceOrder GetOrderByIdAndCustomer(Guid Id, Customer customer)
         {
             return DALServiceOrder.GetOrderByIdAndCustomer(Id, customer);
         }
