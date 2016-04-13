@@ -88,8 +88,8 @@ namespace Dianzhu.DAL
                     chat.ReceiveTime = DateTime.Parse(ht["ReceiveTime"].ToString());
                     chat.SendTime = DateTime.Parse(ht["SendTime"].ToString());
                     //chat.To.Id = new Guid(ht["To_id"].ToString());
-                    chat.To = member.GetMemberById(new Guid(ht["To_id"].ToString()));
-                    chat.From = member.GetMemberById(new Guid(ht["From_id"].ToString()));
+                    chat.MemberIdTo = ht["To_id"].ToString();
+                    chat.MemberIdFrom =  ht["From_id"].ToString();
                     //chat.From.Id = new Guid(ht["From_id"].ToString());
                     //chat.Reception.Id = new Guid(ht["ReceptionBase_id"].ToString());
                     chat.SavedTime = DateTime.Parse(ht["SavedTime"].ToString());

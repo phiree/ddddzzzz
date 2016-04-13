@@ -11,7 +11,7 @@ namespace Dianzhu.Model
     /// </summary>
     public class ReceptionChatUserStatus : ReceptionChat
     {
-        public virtual DZMembership User { get; set; }//状态发生变化的用户
+        public virtual string  MemberId { get; set; }//状态发生变化的用户
         public virtual enum_UserStatus Status { get; set; }//用户状态
     }
 

@@ -67,7 +67,7 @@ namespace Dianzhu.NotifyCenter
             extNode.AddChild(orderObj);
 
             ags.Message msg= BuildNotice(
-                 order.Customer.Id + "@" + im.Domain,
+                 order.Customer.MemberId + "@" + im.Domain,
                  "订单状态已变为:" + order.GetFriendlyStatus(),
                  extNode
                  );
@@ -76,7 +76,7 @@ namespace Dianzhu.NotifyCenter
             im.SendMessage(msg.ToString());
 
             ags.Message msgForCS = BuildNotice(
-                  order.CustomerService.Id + "@" + im.Domain,
+                  order.CustomerService.MemberId + "@" + im.Domain,
                   "订单状态已变为:" + order.OrderStatus,
                   extNode
                   );
@@ -117,16 +117,17 @@ namespace Dianzhu.NotifyCenter
 
         public void SendRessaginMessage(Guid csId)
         {
-            DZMembershipProvider bllDZMembership = new DZMembershipProvider();
             BLLReceptionStatus bllReceptionStatus = new BLLReceptionStatus();
-            DZMembership cs = bllDZMembership.GetUserById(csId);
-            DZMembership imMember = bllDZMembership.GetUserById(new Guid( Dianzhu.Config.Config.GetAppSetting("NoticeSenderId")));
+            Dianzhu.DAL.DALCustomerService dalCustomerService = new DAL.DALCustomerService();
+            Dianzhu.DAL.DALNotificationSender dalNotificationSender = new DAL.DALNotificationSender();
+            CustomerService cs = dalCustomerService.GetOne(csId.ToString());
+            NotificationSender notificationSender = dalNotificationSender.GetOne( Dianzhu.Config.Config.GetAppSetting("NoticeSenderId"));
             //通过 IMServer 给客服发送消息
             IIMSession imSession = new IMSessionsDB();
             ReceptionAssigner assigner = new ReceptionAssigner(imSession);
-            Dictionary<DZMembership, DZMembership> reassignList = assigner.AssignCSLogoff(cs);
+            Dictionary<Customer, CustomerService> reassignList = assigner.AssignCSLogoff(cs);
             //将新分配的客服发送给客户端.
-            foreach (KeyValuePair<DZMembership, DZMembership> r in reassignList)
+            foreach (KeyValuePair<Customer, CustomerService> r in reassignList)
             {
                 ServiceOrder order = bllReceptionStatus.GetOrder(r.Key, r.Value).Order;
                 if (order.OrderStatus != enum_OrderStatus.Draft)
@@ -137,10 +138,10 @@ namespace Dianzhu.NotifyCenter
                 }
                 ReceptionChat rc = new ReceptionChatReAssign
                 {
-                    From = imMember,
+                    MemberIdFrom = notificationSender.MemberId,
                     ChatType = enum_ChatType.ReAssign,
                     ReAssignedCustomerService = r.Value,
-                    To = r.Key,
+                    MemberIdTo = r.Key.MemberId,
                     ServiceOrder = order,
                     SendTime = DateTime.Now
                 };
@@ -148,48 +149,48 @@ namespace Dianzhu.NotifyCenter
             }
         }
 
-        public void SendCustomLogoffMessage(Guid csId)
-        {
-            DZMembershipProvider bllDZMembership = new DZMembershipProvider();
-            BLLReceptionStatus bllReceptionStatus = new BLLReceptionStatus();
-            ReceptionStatus rs = bllReceptionStatus.GetOneByCustomer(csId);
-            DZMembership imMember = bllDZMembership.GetUserById(new Guid(Dianzhu.Config.Config.GetAppSetting("NoticeSenderId")));
-            //通过 IMServer 给客服发送消息
-            IIMSession imSession = new IMSessionsDB();
+        //public void SendCustomLogoffMessage(Guid csId)
+        //{
+        //    DZMembershipProvider bllDZMembership = new DZMembershipProvider();
+        //    BLLReceptionStatus bllReceptionStatus = new BLLReceptionStatus();
+        //    ReceptionStatus rs = bllReceptionStatus.GetOneByCustomer(csId);
+        //    DZMembership imMember = bllDZMembership.GetUserById(new Guid(Dianzhu.Config.Config.GetAppSetting("NoticeSenderId")));
+        //    //通过 IMServer 给客服发送消息
+        //    IIMSession imSession = new IMSessionsDB();
 
-            ReceptionChat rc = new ReceptionChatUserStatus
-            {
-                From = imMember,
-                ChatType = enum_ChatType.UserStatus,
-                To = rs.CustomerService,
-                ServiceOrder = rs.Order,
-                SendTime = DateTime.Now,
-                User=rs.Customer,
-                Status = enum_UserStatus.unavailable
-            };
-            im.SendMessage(rc);
-        }
+        //    ReceptionChat rc = new ReceptionChatUserStatus
+        //    {
+        //        MemberIdFrom = imMember,
+        //        ChatType = enum_ChatType.UserStatus,
+        //        MemberIdTo = rs.CustomerService,
+        //        ServiceOrder = rs.Order,
+        //        SendTime = DateTime.Now,
+        //        MemberId=rs.Customer,
+        //        Status = enum_UserStatus.unavailable
+        //    };
+        //    im.SendMessage(rc);
+        //}
 
-        public void SendCustomLoginMessage(Guid csId)
-        {
-            DZMembershipProvider bllDZMembership = new DZMembershipProvider();
-            BLLReceptionStatus bllReceptionStatus = new BLLReceptionStatus();
-            ReceptionStatus rs = bllReceptionStatus.GetOneByCustomer(csId);
-            DZMembership imMember = bllDZMembership.GetUserById(new Guid(Dianzhu.Config.Config.GetAppSetting("NoticeSenderId")));
-            //通过 IMServer 给客服发送消息
-            IIMSession imSession = new IMSessionsDB();
+        //public void SendCustomLoginMessage(Guid csId)
+        //{
+        //    DZMembershipProvider bllDZMembership = new DZMembershipProvider();
+        //    BLLReceptionStatus bllReceptionStatus = new BLLReceptionStatus();
+        //    ReceptionStatus rs = bllReceptionStatus.GetOneByCustomer(csId);
+        //    DZMembership imMember = bllDZMembership.GetUserById(new Guid(Dianzhu.Config.Config.GetAppSetting("NoticeSenderId")));
+        //    //通过 IMServer 给客服发送消息
+        //    IIMSession imSession = new IMSessionsDB();
 
-            ReceptionChat rc = new ReceptionChatUserStatus
-            {
-                From = imMember,
-                ChatType = enum_ChatType.UserStatus,
-                To = rs.CustomerService,
-                ServiceOrder = rs.Order,
-                SendTime = DateTime.Now,
-                User = rs.Customer,
-                Status = enum_UserStatus.available
-            };
-            im.SendMessage(rc);
-        }
+        //    ReceptionChat rc = new ReceptionChatUserStatus
+        //    {
+        //        MemberIdFrom = imMember,
+        //        ChatType = enum_ChatType.UserStatus,
+        //        MemberIdTo = rs.CustomerService,
+        //        ServiceOrder = rs.Order,
+        //        SendTime = DateTime.Now,
+        //        MemberId = rs.Customer,
+        //        Status = enum_UserStatus.available
+        //    };
+        //    im.SendMessage(rc);
+        //}
     }
 }

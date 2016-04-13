@@ -60,19 +60,19 @@ namespace Dianzhu.CSClient.Presenter
             int rowCount;
             var chatHistory = dalReception
             //.GetListTest();
-            .GetReceptionChatList(serviceOrder.Customer, GlobalViables.CurrentCustomerService, Guid.Empty,
+            .GetReceptionChatList(serviceOrder.Customer.MemberId, GlobalViables.CurrentCustomerService.MemberId, Guid.Empty,
             DateTime.Now.AddMonths(-1), DateTime.Now.AddDays(1), 0, 20, enum_ChatTarget.all, out rowCount);
             viewChatList.ChatList.Clear();
             viewChatList.ChatList = chatHistory;
         }
 
-        private void ViewCustomerList_CustomerClick(DZMembership customer)
+        private void ViewCustomerList_CustomerClick(Customer customer)
         {
 
             int rowCount;
             var chatHistory = dalReception
             //.GetListTest();
-            .GetReceptionChatList(customer, GlobalViables.CurrentCustomerService,
+            .GetReceptionChatList(customer.MemberId, GlobalViables.CurrentCustomerService.MemberId,
            IdentityManager.CurrentIdentity.Id
             , DateTime.Now.AddMonths(-1), DateTime.Now.AddDays(1), 0, 20, enum_ChatTarget.all, out rowCount);
 

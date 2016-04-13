@@ -21,7 +21,7 @@ namespace Dianzhu.CSClient.Presenter
         IViewOrderHistory viewOrderHistory;
         IList<ServiceOrder> orderList;
         BLLServiceOrder bllServiceOrder;
-        Dictionary<DZMembership, IList<ServiceOrder>> allList;
+        Dictionary<Customer, IList<ServiceOrder>> allList;
 
         public POrderHistory() { }
         public POrderHistory(IViewOrderHistory viewOrderHistory,IViewIdentityList viewIdentityList)
@@ -29,7 +29,7 @@ namespace Dianzhu.CSClient.Presenter
             this.viewOrderHistory = viewOrderHistory;
             this.orderList = new List<ServiceOrder>();
             this.bllServiceOrder = new BLLServiceOrder();
-            this.allList = new Dictionary<DZMembership, IList<ServiceOrder>>();
+            this.allList = new Dictionary<Customer, IList<ServiceOrder>>();
 
             viewOrderHistory.SearchOrderHistoryClick += ViewOrderHistory_SearchOrderHistoryClick;
             viewIdentityList.IdentityClick += ViewIdentityList_IdentityClick;

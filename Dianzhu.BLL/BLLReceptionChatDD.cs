@@ -27,7 +27,7 @@ namespace Dianzhu.BLL
             DALReceptionChatDD.Save(chatDD);
         }
 
-        public IList<ReceptionChatDD> GetChatDDListByOrder(IList<DZMembership> list)
+        public IList<ReceptionChatDD> GetChatDDListByOrder(IList<Customer> list)
         {
             return DALReceptionChatDD.GetChatDDListByOrder(list);
         }

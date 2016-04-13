@@ -91,13 +91,12 @@ namespace Dianzhu.CSClient.Presenter
         /// <param name="jidUser"></param>
         void IMLogined(string jidUser)
        {
-          
-            DZMembership customerService = new BLLFactory().BLLMember.GetUserById(new Guid( jidUser));
+            DAL.DALCustomerService dalCustomerService = new DAL.DALCustomerService();
+            CustomerService customerService = dalCustomerService.GetOne(jidUser);//.BLLMember.GetUserById(new Guid( jidUser));
             //GlobalViables.CurrentCustomerService = customerService;
              GlobalViables.CurrentCustomerService = customerService;
-
-            Guid id =new Guid(Dianzhu.Config.Config.GetAppSetting("DiandianLoginId"));
-            DZMembership diandian = new BLLFactory().BLLMember.GetUserById(id);
+ 
+            Diandian diandian =(Diandian)dalCustomerService.GetOne(Dianzhu.Config.Config.GetAppSetting("DiandianLoginId"));
             GlobalViables.Diandian = diandian;
 
             loginView.IsLoginSuccess = true;

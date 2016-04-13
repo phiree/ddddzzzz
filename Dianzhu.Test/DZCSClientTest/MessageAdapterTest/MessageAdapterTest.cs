@@ -111,7 +111,7 @@ namespace Dianzhu.Test.DZCSClientTest.MessageAdapterTest
             {
                 Model.ReceptionChat chat = adapter.MessageToChat(msg);
                 Assert.AreEqual(mediaurl, ((Model.ReceptionChatMedia)chat).MedialUrl);
-                Assert.AreEqual(userid.ToString(), chat.From.Id.ToString())
+                Assert.AreEqual(userid.ToString(), chat.MemberIdFrom.Id.ToString())
     ;
                 Message msg2 = adapter.ChatToMessage(chat, server);
                 Assert.AreEqual(userid.ToString(), msg2.From.User);

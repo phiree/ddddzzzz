@@ -21,7 +21,7 @@ namespace Dianzhu.DAL
         public DALReceptionStatusArchieve(string fortestonly) : base(fortestonly)
         { }
 
-        public virtual IList<DZMembership> GetCustomerListByCS(DZMembership cs, int pageNum, int pageSize, out int totalAmount)
+        public virtual IList<Customer> GetCustomerListByCS(CustomerService cs, int pageNum, int pageSize, out int totalAmount)
         {
             var iquery = Session.QueryOver<ReceptionStatusArchieve>().Where(x => x.CustomerService == cs).OrderBy(x => x.ArchieveTime).Desc;
             totalAmount = iquery.RowCount();

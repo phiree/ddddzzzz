@@ -49,8 +49,8 @@ namespace Dianzhu.CSClient.Presenter
             {
                 ServiceOrder = IdentityManager.CurrentIdentity,
                 ChatType = Model.Enums.enum_ChatType.Media,
-                From =GlobalViables.CurrentCustomerService,
-                To = IdentityManager.CurrentIdentity.Customer,
+                MemberIdFrom =GlobalViables.CurrentCustomerService.MemberId,
+                MemberIdTo = IdentityManager.CurrentIdentity.Customer.MemberId,
                 MessageBody = viewChatSend.MessageText,
                 SendTime = DateTime.Now,
                 SavedTime = DateTime.Now,
@@ -79,8 +79,8 @@ namespace Dianzhu.CSClient.Presenter
             ReceptionChat chat = new ReceptionChat
             {
                 ChatType = Model.Enums.enum_ChatType.Text,
-                From = GlobalViables.CurrentCustomerService,
-                To = IdentityManager.CurrentIdentity.Customer,
+                MemberIdFrom = GlobalViables.CurrentCustomerService.MemberId,
+                MemberIdTo = IdentityManager.CurrentIdentity.Customer.MemberId,
                 MessageBody = messageText,
                 SendTime = DateTime.Now,
                 SavedTime = DateTime.Now,

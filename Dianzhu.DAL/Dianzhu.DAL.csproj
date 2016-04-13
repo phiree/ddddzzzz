@@ -124,6 +124,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DALCashTicketTemplate.cs" />
     <Compile Include="DALCashTicketCreateRecord.cs" />
+    <Compile Include="Reception\DALNotificationSender.cs" />
+    <Compile Include="Reception\DALCustomer.cs" />
+    <Compile Include="Reception\DALCustomerService.cs" />
     <Compile Include="Resource\DALBusiness.cs" />
     <Compile Include="DALServiceType.cs" />
     <Compile Include="DALDZService.cs" />

@@ -15,7 +15,7 @@ namespace Dianzhu.Model
         /// <summary>
         /// 重新分配的客服
         /// </summary>
-        public virtual DZMembership ReAssignedCustomerService { get; set; }
+        public virtual CustomerService ReAssignedCustomerService { get; set; }
     }
 }
 

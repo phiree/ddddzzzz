@@ -11,7 +11,7 @@ namespace Dianzhu.DAL.Mapping
         public IMUserStatusMap() { 
             Id(x=>x.Id);
             Map(x => x.UserIdRaw);
-            Map(x => x.UserID);
+            Map(x => x.MemberId);
             Map(x => x.Status).CustomType<Model.Enums.enum_UserStatus>();
             Map(x => x.LastModifyTime);
             Map(x => x.IpAddress);

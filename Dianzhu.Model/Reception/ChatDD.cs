@@ -18,8 +18,8 @@ namespace Dianzhu.Model
         public virtual DateTime SavedTime { get; set; }//保存的时间, 作为排序依据.
         public virtual DateTime SendTime { get; set; }//发送时间
         public virtual DateTime ReceiveTime { get; set; }//接收时间
-        public virtual DZMembership From { get; set; }//发送方
-        public virtual DZMembership To { get; set; }//接收方
+        public virtual string  MemberIdFrom { get; set; }//发送方
+        public virtual string MemberIdTo { get; set; }//接收方
         public virtual string MessageBody { get; set; }//消息的内容
         public virtual Enums.enum_ChatType ChatType { get; set; }
         public virtual ServiceOrder ServiceOrder { get; set; }

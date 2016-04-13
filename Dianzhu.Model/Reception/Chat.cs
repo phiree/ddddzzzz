@@ -45,8 +45,8 @@ namespace Dianzhu.Model
         public virtual DateTime SavedTime { get; set; }
         public virtual DateTime SendTime { get; set; }//发送时间
         public virtual DateTime ReceiveTime { get; set; }//接收时间
-        public virtual DZMembership From { get; set; }//发送方
-        public virtual DZMembership To { get; set; }//接收方
+        public virtual string  MemberIdFrom { get; set; }//发送方
+        public virtual string  MemberIdTo { get; set; }//接收方
         public virtual string MessageBody { get; set; }//消息的内容
         public virtual Enums.enum_ChatType ChatType { get; set; }
         public virtual ServiceOrder ServiceOrder { get; set;}
@@ -64,12 +64,12 @@ namespace Dianzhu.Model
         /// <returns></returns>
         public virtual string BuildLine()
         {
-            return SavedTime.ToShortTimeString() + " " + From.UserName + ":    " + MessageBody;
+            return SavedTime.ToShortTimeString() + " " + MemberIdFrom + ":    " + MessageBody;
         }
-        public virtual string BuildLine(DZMembership from)
+        public virtual string BuildLine(string memberIdFrom)
         {
-            if (from == this.From)
-                return MessageBody + "   " + From.UserName + " " + SendTime.ToString("yyyy-MM-dd HH:mm:ss");
+            if (memberIdFrom == this.MemberIdFrom)
+                return MessageBody + "   " + MemberIdFrom + " " + SendTime.ToString("yyyy-MM-dd HH:mm:ss");
             else
             {
                 return BuildLine();

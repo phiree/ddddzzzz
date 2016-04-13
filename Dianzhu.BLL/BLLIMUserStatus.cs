@@ -15,7 +15,7 @@ namespace Dianzhu.BLL
             DALIMUserStatus.SaveOrUpdate(im);
         }
 
-        public IMUserStatus GetIMUSByUserId(Guid userId)
+        public IMUserStatus GetIMUSByUserId(string userId)
         {
             return DALIMUserStatus.GetIMUSByUserId(userId);
         }

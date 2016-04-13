@@ -66,9 +66,9 @@ namespace Dianzhu.CSClient.Presenter
                     CopyDDToChat(rsList.Select(x => x.Customer).ToList());
 
                     ReceptionChatReAssign rChatReAss = new ReceptionChatReAssign();
-                    rChatReAss.From = GlobalViables.Diandian;
-                    rChatReAss.To = rs.Customer;
-                    rChatReAss.MessageBody = "客服" + rs.CustomerService.DisplayName + "已上线";
+                    rChatReAss.MemberIdFrom = GlobalViables.Diandian.MemberId;
+                    rChatReAss.MemberIdTo = rs.Customer.MemberId;
+                    rChatReAss.MessageBody = "客服" + rs.CustomerService.Name + "已上线";
                     rChatReAss.ReAssignedCustomerService = rs.CustomerService;
                     rChatReAss.SavedTime = rChatReAss.SendTime = DateTime.Now;
                     rChatReAss.ServiceOrder = rs.Order;
@@ -79,7 +79,7 @@ namespace Dianzhu.CSClient.Presenter
                     iIM.SendMessage(rChatReAss);
 
                     //ClientState.OrderList.Add(rs.Order);
-                    ClientState.customerList.Add(rs.Customer);
+                   // ClientState.customerList.Add(rs.Customer);
                     //view.AddCustomerButtonWithStyle(rs.Order, em_ButtonStyle.Unread);
                     iViewIdentityList.AddIdentity(rs.Order);
                 }
@@ -91,7 +91,7 @@ namespace Dianzhu.CSClient.Presenter
                     IList<ServiceOrder> orderCList = bllReceptionChatDD.GetCustomListDistinctFrom(num);
                     if (orderCList.Count > 0)
                     {
-                        IList<DZMembership> logoffCList = new List<DZMembership>();
+                        IList<Customer> logoffCList = new List<Customer>();
                         foreach (ServiceOrder order in orderCList)
                         {
                             if (!logoffCList.Contains(order.Customer))
@@ -99,10 +99,9 @@ namespace Dianzhu.CSClient.Presenter
                                 logoffCList.Add(order.Customer);
                             }
 
-                            //按订单显示按钮
-                            //ClientState.OrderList.Add(order);
-                            ClientState.customerList.Add(order.Customer);
-                            //view.AddCustomerButtonWithStyle(order, em_ButtonStyle.Unread);
+                             
+                           // ClientState.customerList.Add(order.Customer);
+                            
                             iViewIdentityList.AddIdentity(order);
                         }
                         CopyDDToChat(logoffCList);
@@ -121,7 +120,7 @@ namespace Dianzhu.CSClient.Presenter
         /// <param name="customer"></param>
         /// <param name="cs"></param>
         /// <param name="order"></param>
-        private void SaveRSA(DZMembership customer, DZMembership cs, ServiceOrder order)
+        private void SaveRSA(Customer customer, CustomerService cs, ServiceOrder order)
         {
             log.Debug("-------开始 接待记录存档------");
             ReceptionStatusArchieve rsa = new ReceptionStatusArchieve
@@ -138,14 +137,14 @@ namespace Dianzhu.CSClient.Presenter
         /// 把点点的记录复制到聊天记录
         /// </summary>
         /// <param name="cList"></param>
-        private void CopyDDToChat(IList<DZMembership> cList)
+        private void CopyDDToChat(IList<Customer> cList)
         {
             //查询点点聊天记录表中该用户的聊天记录
             IList<ReceptionChatDD> chatDDList = bllReceptionChatDD.GetChatDDListByOrder(cList);
 
             ReceptionChat copychat;
-            DZMembership cs = GlobalViables.CurrentCustomerService;
-            IMUserStatus userStatus = bllIMUserStatus.GetIMUSByUserId(GlobalViables.CurrentCustomerService.Id);
+            CustomerService cs = GlobalViables.CurrentCustomerService;
+            IMUserStatus userStatus = bllIMUserStatus.GetIMUSByUserId(GlobalViables.CurrentCustomerService.MemberId);
             foreach (ReceptionChatDD chatDD in chatDDList)
             {
                 copychat = ReceptionChat.Create(chatDD.ChatType);
@@ -153,8 +152,8 @@ namespace Dianzhu.CSClient.Presenter
                 copychat.MessageBody = chatDD.MessageBody;
                 copychat.ReceiveTime = chatDD.ReceiveTime;
                 copychat.SendTime = chatDD.SendTime;
-                copychat.To = cs;
-                copychat.From = chatDD.From;
+                copychat.MemberIdTo = cs.MemberId;
+                copychat.MemberIdFrom = chatDD.MemberIdFrom;
                 
                 copychat.SavedTime = chatDD.SavedTime;
                 copychat.ChatType = chatDD.ChatType;

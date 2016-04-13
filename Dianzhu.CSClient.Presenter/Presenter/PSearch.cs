@@ -123,8 +123,8 @@ namespace Dianzhu.CSClient.Presenter
             {
                 ServiceOrder=IdentityManager.CurrentIdentity,
                 ChatTarget = Model.Enums.enum_ChatTarget.cer,
-                From = GlobalViables.CurrentCustomerService,
-                To = IdentityManager.CurrentIdentity.Customer,
+                MemberIdFrom = GlobalViables.CurrentCustomerService.MemberId,
+                MemberIdTo = IdentityManager.CurrentIdentity.Customer.MemberId,
                 MessageBody = "推送的服务",
                 PushedServices = serviceOrderPushedServices,
                 SendTime = DateTime.Now,
@@ -143,7 +143,7 @@ namespace Dianzhu.CSClient.Presenter
             string server = Dianzhu.Config.Config.GetAppSetting("ImServer");
             string noticeDraftNew = string.Format(@"<message xmlns = ""jabber:client"" type = ""headline"" id = ""{2}"" to = ""{0}"" from = ""{1}"">
                                                     <active xmlns = ""http://jabber.org/protocol/chatstates""></active><ext xmlns=""ihelper:notice:draft:new""><orderID>{3}</orderID></ext></message>", 
-                                                    IdentityManager.CurrentIdentity.Customer.Id + "@" + server, IdentityManager.CurrentIdentity.CustomerService.Id, Guid.NewGuid() + "@" + server, newOrder.Id);
+                                                    IdentityManager.CurrentIdentity.Customer.MemberId + "@" + server, IdentityManager.CurrentIdentity.CustomerService.MemberId, Guid.NewGuid() + "@" + server, newOrder.Id);
             iIM.SendMessage(noticeDraftNew);
         }
 

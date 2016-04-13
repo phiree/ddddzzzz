@@ -41,13 +41,13 @@ namespace Dianzhu.DAL
         /// </summary>
         /// <param name="guid"></param>
         /// <returns></returns>
-        public IList<ReceptionChatDD> GetChatDDListByOrder(IList< DZMembership> fromList)
+        public IList<ReceptionChatDD> GetChatDDListByOrder(IList< Customer> fromList)
         {
             List<ReceptionChatDD> result = new List<ReceptionChatDD>();
             
-            foreach (DZMembership from in fromList)
+            foreach (Customer from in fromList)
             {
-                var list = Session.QueryOver<ReceptionChatDD>().Where(x => x.From == from).And(x => x.IsCopy == false).List();
+                var list = Session.QueryOver<ReceptionChatDD>().Where(x => x.MemberIdFrom == from.MemberId).And(x => x.IsCopy == false).List();
 
                 result.AddRange(list);
             }

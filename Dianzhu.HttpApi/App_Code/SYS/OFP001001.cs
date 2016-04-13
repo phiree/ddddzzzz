@@ -74,7 +74,7 @@ public class ResponseOFP001001 : BaseResponse
                 //先执行存档
                 IMUserStatusArchieve imUSA = new IMUserStatusArchieve();
                 imUSA.UserIdRaw = imOld.UserIdRaw;
-                imUSA.UserID = imOld.UserID;
+                imUSA.UserID = imOld.MemberId;
                 imUSA.Status = imOld.Status;
                 imUSA.IpAddress = imOld.IpAddress;
                 imUSA.OFIpAddress = imOld.OFIpAddress;
@@ -92,7 +92,7 @@ public class ResponseOFP001001 : BaseResponse
             else
             {
                 //直接存储用户状态
-                currentIM.UserID = userId;
+                currentIM.MemberId = userId;
                 currentIM.OFIpAddress = ofIp;
                 currentIM.ClientName = clientName;
                 currentIM.LastModifyTime = DateTime.Now;

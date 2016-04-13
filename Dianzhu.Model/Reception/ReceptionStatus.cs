@@ -26,12 +26,12 @@ namespace Dianzhu.Model
         /// <summary>
         /// 客服
         /// </summary>
-        public virtual DZMembership CustomerService { get; set; }
+        public virtual CustomerService CustomerService { get; set; }
 
         /// <summary>
         /// 用户
         /// </summary>
-        public virtual DZMembership Customer { get; set; }
+        public virtual Customer Customer { get; set; }
 
         /// <summary>
         /// 存档时间
@@ -67,12 +67,12 @@ namespace Dianzhu.Model
         /// <summary>
         /// 客服
         /// </summary>
-        public virtual DZMembership CustomerService { get; set; }
+        public virtual CustomerService CustomerService { get; set; }
 
         /// <summary>
         /// 用户
         /// </summary>
-        public virtual DZMembership Customer { get; set; }
+        public virtual Customer Customer { get; set; }
 
         /// <summary>
         /// 最后更新时间

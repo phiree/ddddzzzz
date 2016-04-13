@@ -25,7 +25,7 @@ namespace Dianzhu.BLL
             dalRS.SaveOrUpdate(rsa);
         }
 
-        public IList<DZMembership> GetCustomerListByCS(DZMembership cs,int pageNum,int pageSize,out int totalAmount)
+        public IList<Customer> GetCustomerListByCS(CustomerService cs,int pageNum,int pageSize,out int totalAmount)
         {
             return dalRS.GetCustomerListByCS(cs, pageNum, pageSize, out totalAmount);
         }

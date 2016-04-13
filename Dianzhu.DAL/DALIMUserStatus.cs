@@ -19,9 +19,9 @@ namespace Dianzhu.DAL
             
         }
 
-        public IMUserStatus GetIMUSByUserId(Guid userId)
+        public IMUserStatus GetIMUSByUserId(string userId)
         {
-            return Session.QueryOver<IMUserStatus>().Where(x => x.UserID == userId).SingleOrDefault();
+            return Session.QueryOver<IMUserStatus>().Where(x => x.MemberId == userId).SingleOrDefault();
         }
 
         public IList<IMUserStatus> GetOnlineListByClientName(string name)

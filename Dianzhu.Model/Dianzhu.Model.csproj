@@ -60,6 +60,8 @@
     <Compile Include="Reception\Chat.cs" />
     <Compile Include="Reception\ChatNotice.cs" />
     <Compile Include="Reception\ChatReAssign.cs" />
+    <Compile Include="Reception\Diandian.cs" />
+    <Compile Include="Reception\NotificationSender.cs" />
     <Compile Include="Resource\Agent\Agent.cs" />
     <Compile Include="ServiceOrder\Complaint.cs" />
     <Compile Include="Promote\Advertisement.cs" />

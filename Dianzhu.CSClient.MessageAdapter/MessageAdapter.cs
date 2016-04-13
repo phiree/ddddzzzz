@@ -113,8 +113,8 @@ namespace Dianzhu.CSClient.MessageAdapter
             }
             }
             ReceptionChat chat = ReceptionChat.Create(chatType);
-            var chatFrom = BllMember.GetUserById(new Guid(message.From.User));
-            chat.From = chatFrom;
+          //  var chatFrom = BllMember.GetUserById(new Guid(message.From.User));
+            chat.MemberIdFrom = message.From.User;
             chat.FromResource = enum_XmppResource.Unknow;
             try
             {
@@ -126,8 +126,8 @@ namespace Dianzhu.CSClient.MessageAdapter
             }
             if (!isNotice)
             {
-                var chatTo = BllMember.GetUserById(new Guid(message.To.User));
-                chat.To = chatTo;
+                //var chatTo = BllMember.GetUserById(new Guid(message.To.User));
+                chat.MemberIdTo = message.To.User;
                 if (message.To.Resource != null)
                 {
                     chat.ToResource = (enum_XmppResource)Enum.Parse(typeof(enum_XmppResource), message.To.Resource);
@@ -188,7 +188,7 @@ namespace Dianzhu.CSClient.MessageAdapter
                     var userStatusNode = ext_element.SelectSingleElement("msgObj");
                     var userId = userStatusNode.GetAttribute("userId");
                     var status = userStatusNode.GetAttribute("status");
-                    ((ReceptionChatUserStatus)chat).User = BllMember.GetUserById(new Guid(userId));
+                    ((ReceptionChatUserStatus)chat).MemberId = userId;
                     ((ReceptionChatUserStatus)chat).Status = (enum_UserStatus)Enum.Parse(typeof(enum_UserStatus), status, true); ;
                 }
             }
@@ -211,8 +211,8 @@ namespace Dianzhu.CSClient.MessageAdapter
             msg.SetAttribute("type", "chat");
             msg.Id = chat.Id != Guid.Empty ? chat.Id.ToString() : Guid.NewGuid().ToString();
             //     msg.From = new agsXMPP.Jid(chat.From.Id + "@" + server);
-            IMUserStatus toUserStatus = BLLIMUserStatus.GetIMUSByUserId(chat.To.Id);
-            msg.To = new agsXMPP.Jid(chat.To.Id+"@"+server+"/"+ toUserStatus.ClientName);//发送对象
+            IMUserStatus toUserStatus = BLLIMUserStatus.GetIMUSByUserId(chat.MemberIdTo);
+            msg.To = new agsXMPP.Jid(chat.MemberIdTo+"@"+server+"/"+ toUserStatus.ClientName);//发送对象
             msg.Body = chat.MessageBody;
 
             var nodeActive = new agsXMPP.Xml.Dom.Element("active", string.Empty, "http://jabber.org/protocol/chatstates");
@@ -242,19 +242,19 @@ namespace Dianzhu.CSClient.MessageAdapter
                 case enum_ChatType.UserStatus:
                     extNode.Namespace = "ihelper:chat:userstatus";
 
-                    var user = ((ReceptionChatUserStatus)chat).User;
+                    var user = ((ReceptionChatUserStatus)chat).MemberId;
                     var status = ((ReceptionChatUserStatus)chat).Status;
                     var extStatus = new agsXMPP.Xml.Dom.Element("msgObj");
-                    extStatus.SetAttribute("userId", user.Id.ToString());
+                    extStatus.SetAttribute("userId", user );
                     extStatus.SetAttribute("status", status.ToString());
                     extNode.AddChild(extStatus);
                     break;
                 case enum_ChatType.ReAssign:
                     extNode.Namespace = "ihelper:notice:cer:change";
                     var cerObj = new agsXMPP.Xml.Dom.Element("cerObj");
-                    cerObj.SetAttribute("userID", ((ReceptionChatReAssign)chat).ReAssignedCustomerService.Id.ToString());
-                    cerObj.SetAttribute("alias", ((ReceptionChatReAssign)chat).ReAssignedCustomerService.DisplayName);
-                    cerObj.SetAttribute("imgUrl", ((ReceptionChatReAssign)chat).ReAssignedCustomerService.AvatarUrl);
+                    cerObj.SetAttribute("userID", ((ReceptionChatReAssign)chat).ReAssignedCustomerService.MemberId);
+                    cerObj.SetAttribute("alias", ((ReceptionChatReAssign)chat).ReAssignedCustomerService.Name);
+                    cerObj.SetAttribute("imgUrl", ((ReceptionChatReAssign)chat).ReAssignedCustomerService.Avatar);
                     extNode.AddChild(cerObj);
                     msg.SetAttribute("type", "headline");
                     break;

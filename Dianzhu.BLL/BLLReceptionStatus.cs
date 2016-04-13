@@ -22,9 +22,9 @@ namespace Dianzhu.BLL
        
       
         /// <summary>
-        /// 客服下线,将用户分配给其他客服.
+        /// 用户下线,删除接待列表对应项
         /// </summary>
-           public void CustomerLogOut(DZMembership customer)
+           public void CustomerLogOut(Customer customer)
         {
             IList<ReceptionStatus> existedRS = dalRS.GetListByCustomer(customer);
             if (existedRS.Count != 1)
@@ -41,13 +41,13 @@ namespace Dianzhu.BLL
         /// </summary>
         /// <param name=""></param>
         /// <param name=""></param>
-        public IList<DZMembership> GetCustomListByCS(DZMembership cs)
+        public IList<Customer> GetCustomListByCS(CustomerService cs)
         {
             IList<ReceptionStatus> RS = dalRS.GetListByCustomerService(cs);
-            IList<DZMembership> result = RS.Select(x => x.Customer).ToList();
+            IList<Customer> result = RS.Select(x => x.Customer).ToList();
             return result;
         }
-        public IList<ReceptionStatus> GetRsListByCS(DZMembership cs)
+        public IList<ReceptionStatus> GetRsListByCS(CustomerService cs)
         {
             return dalRS.GetListByCustomerService(cs);
         }
@@ -56,9 +56,9 @@ namespace Dianzhu.BLL
         /// </summary>
         /// <param name=""></param>
         /// <param name=""></param>
-        public DZMembership GetCustomListByCSId(Guid csId)
+        public CustomerService GetCustomListByCSId(Guid csId)
         {
-            DZMembership result = dalRS.GetListByCustomerServiceId(csId);
+            CustomerService result = dalRS.GetListByCustomerServiceId(csId);
             return result;
         }
 
@@ -67,7 +67,7 @@ namespace Dianzhu.BLL
         /// </summary>
         /// <param name="c"></param>
         /// <param name="cs"></param>
-        public void SaveReAssign(DZMembership c,DZMembership cs,ServiceOrder order)
+        public void SaveReAssign(Customer c,CustomerService cs,ServiceOrder order)
         {
             ReceptionStatus r = new ReceptionStatus { Customer = c, CustomerService = cs ,Order = order};
             ReceptionStatus or = dalRS.GetOneByCustomerAndCS(cs, c);
@@ -92,7 +92,7 @@ namespace Dianzhu.BLL
         /// 删除分配
         /// </summary>
         /// <param name="rs"></param>
-        public void DeleteAssign(DZMembership c, DZMembership cs)
+        public void DeleteAssign(Customer c, CustomerService cs)
         {
             ReceptionStatus r = dalRS.GetOneByCustomerAndCS(cs, c);
             dalRS.Delete(r);
@@ -107,7 +107,7 @@ namespace Dianzhu.BLL
             dalRS.Delete(rs);
         }
 
-        public void UpdateOrder(DZMembership c,DZMembership cs,ServiceOrder order)
+        public void UpdateOrder(Customer c,CustomerService cs,ServiceOrder order)
         {
             ReceptionStatus re = dalRS.GetOneByCustomerAndCS(cs, c);
             re.Order = order;
@@ -121,12 +121,12 @@ namespace Dianzhu.BLL
         /// </summary>
         /// <param name="dd"></param>
         /// <returns></returns>
-        public IList<ReceptionStatus> GetRSListByDiandian(DZMembership dd,int num)
+        public IList<ReceptionStatus> GetRSListByDiandian(Diandian dd,int num)
         {
             return dalRS.GetRSListByDiandian(dd,num);
         }
 
-        public ReceptionStatus GetOrder(DZMembership c,DZMembership cs)
+        public ReceptionStatus GetOrder(Customer c,CustomerService cs)
         {
             return dalRS.GetOrder(c, cs);
         }
@@ -151,20 +151,22 @@ namespace Dianzhu.BLL
          
         
         //被排除的客服.
-        public DZMembership excluedCustomerService { get; set; }
+        public CustomerService excluedCustomerService { get; set; }
         //待分配客户列表
-        public IList<DZMembership> CustomerList { get; set; }
+        public IList<Customer> CustomerList { get; set; }
 
         //在线客服列表
-        IList<DZMembership> customerServiceList;
+        IList<CustomerService> customerServiceList;
         //点点
-        public DZMembership diandian;
+        public Diandian diandian;
         //分配策略
         IAssignStratage stratage;
         //IM会话.
         IIMSession imSession;
         DAL.DALReceptionStatus dalRS;
         DAL.DALMembership dalMember;
+        DALCustomer dalCustomer;
+        DALCustomerService dalCustomerService;
         public ReceptionAssigner(IAssignStratage stratage,IIMSession imSession
             , DALReceptionStatus dalRS
             , DALMembership dalMember) 
@@ -173,6 +175,8 @@ namespace Dianzhu.BLL
             this.imSession = imSession;
             this.dalRS = dalRS;
             this.dalMember = dalMember;
+            this.dalCustomer = new DALCustomer();
+            this.dalCustomerService = new DALCustomerService();
         }
         public ReceptionAssigner(IIMSession imSession)
             : this(new AssignSrratageByAssNum(new DALReceptionStatus()),
@@ -192,16 +196,16 @@ namespace Dianzhu.BLL
         }
         
       
-        protected IList<DZMembership> CustomerServiceList 
+        protected IList<CustomerService> CustomerServiceList 
         {
             get { 
                 if (customerServiceList == null)
                 {
-                    customerServiceList = new List<DZMembership>();
+                    customerServiceList = new List<CustomerService>();
                      //convert sesionUser to dzmembership
                     foreach (OnlineUserSession user in imSession.GetOnlineSessionUser(Model.Enums.enum_XmppResource.YDBan_CustomerService.ToString()))
                     {
-                        DZMembership cs = dalMember.GetOne(new Guid( user.username));
+                        CustomerService cs = dalCustomerService.GetOne(user.username);
                         customerServiceList.Add(cs);
                     }
                 }
@@ -209,7 +213,7 @@ namespace Dianzhu.BLL
             }
         }
 
-        public virtual DZMembership Diandian
+        public virtual Diandian Diandian
         {
             get
             {
@@ -220,7 +224,7 @@ namespace Dianzhu.BLL
                     string errMsg = string.Empty;
                     if (onlineUsers.Count == 1)
                     {
-                        diandian = dalMember.GetOne(new Guid(onlineUsers[0].username));
+                        diandian =(Diandian)dalCustomerService.GetOne( onlineUsers[0].username);
                     }
                     else if (onlineUsers.Count == 0)
                     {
@@ -250,10 +254,10 @@ namespace Dianzhu.BLL
         /// </summary>
         /// <param name="customer"></param>
         /// <returns></returns>
-        public virtual Dictionary<DZMembership,DZMembership>  AssignCustomerLogin(DZMembership customer)
+        public virtual Dictionary<Customer, CustomerService>  AssignCustomerLogin(Customer customer)
         {
              
-            Dictionary < DZMembership,DZMembership> assigned= stratage.Assign(new List<DZMembership>(new DZMembership[] { customer})
+            Dictionary < Customer,CustomerService> assigned= stratage.Assign(new List<Customer>(new Customer[] { customer})
                 , CustomerServiceList,Diandian);
             //获取用户的接待记录.应该为空,但是当用户异常退出时会删除失败,保留了历史数据.
             dalRS.DeleteAllCustomerAssign(customer);
@@ -273,7 +277,7 @@ namespace Dianzhu.BLL
         /// </summary>
         /// <param name="customerservice"></param>
         /// <returns></returns>
-        public virtual Dictionary<DZMembership, DZMembership> AssignCSLogoff(DZMembership customerservice)
+        public virtual Dictionary<Customer, CustomerService> AssignCSLogoff(CustomerService customerservice)
         {
             //remove cs from list
             CustomerServiceList.Remove(customerservice);
@@ -281,11 +285,11 @@ namespace Dianzhu.BLL
             IList<ReceptionStatus> customerWithCS = dalRS.GetListByCustomerService(customerservice);
 
             //re assign
-            Dictionary<DZMembership, DZMembership> newAssign
+            Dictionary<Customer, CustomerService> newAssign
                 = stratage.Assign(customerWithCS.Select(x=>x.Customer).ToList(), CustomerServiceList,Diandian);
             
             // save assign to database 
-            foreach (KeyValuePair<DZMembership, DZMembership> pair in newAssign)
+            foreach (KeyValuePair<Customer, CustomerService> pair in newAssign)
             {
                 ReceptionStatus rs = new ReceptionStatus
                 {
@@ -343,7 +347,7 @@ namespace Dianzhu.BLL
                     onlineUserSession.lastActionDate = im.LastModifyTime.ToString();
                     onlineUserSession.presenceStatus = im.Status.ToString();
                     onlineUserSession.ressource = im.ClientName;
-                    onlineUserSession.username = im.UserID.ToString();
+                    onlineUserSession.username = im.MemberId.ToString();
                     //onlineUserSession.sessionId
 
                     resultList.Add(onlineUserSession);
@@ -390,7 +394,7 @@ namespace Dianzhu.BLL
         /// <param name="csList">客服</param>
         /// <param name="diandian">如果所有客服都不在线,则分配给该用户.</param>
         /// <returns></returns>
-        Dictionary<DZMembership, DZMembership> Assign(IList<DZMembership> customerList, IList<DZMembership> csList,DZMembership diandian);
+        Dictionary<Customer, CustomerService> Assign(IList<Customer> customerList, IList<CustomerService> csList,Diandian diandian);
     }
   
 
@@ -406,9 +410,9 @@ namespace Dianzhu.BLL
         /// <param name="customerList">待分配的客户列表</param>
         /// <param name="csList">在线的客服列表</param>
         /// <returns>分配后的字典表,key 是客户,value 是客服</returns>
-        public Dictionary<DZMembership,DZMembership> Assign(IList<DZMembership> customerList, IList<DZMembership> csList, DZMembership diandian)
+        public Dictionary<Customer,CustomerService> Assign(IList<Customer> customerList, IList<CustomerService> csList, Diandian diandian)
         {
-            Dictionary<DZMembership, DZMembership> assignList = new Dictionary<DZMembership, DZMembership>();
+            Dictionary<Customer, CustomerService> assignList = new Dictionary<Customer, CustomerService>();
             if (csList.Count == 0)
             {
                 //r如果没有在线客服 怎么处理
@@ -422,7 +426,7 @@ namespace Dianzhu.BLL
             else
             {
                 int totalCS = csList.Count;
-                foreach (DZMembership customer in customerList)
+                foreach (Customer customer in customerList)
                 {
                     int i = r.Next(totalCS);
                     var assignedCs= csList[i];
@@ -444,15 +448,15 @@ namespace Dianzhu.BLL
             dalRS = dal;
         }
 
-        public Dictionary<DZMembership, DZMembership> Assign(IList<DZMembership> customerList, IList<DZMembership> csList, DZMembership diandian)
+        public Dictionary<Customer, CustomerService> Assign(IList<Customer> customerList, IList<CustomerService> csList, Diandian diandian)
         {
-            Dictionary<DZMembership, DZMembership> assignList = new Dictionary<DZMembership, DZMembership>();
+            Dictionary<Customer, CustomerService> assignList = new Dictionary<Customer, CustomerService>();
             if (csList.Count == 0)
             {
                 //r如果没有在线客服 怎么处理
                 //throw new Exception("客服离线");
 
-                foreach (DZMembership customer in customerList)
+                foreach (Customer customer in customerList)
                 {
                     assignList.Add(customer, diandian);
                 }
@@ -462,12 +466,12 @@ namespace Dianzhu.BLL
                 //emergency:点点账户是否登录 影响到 客服是否分配， 需要改善。 
                 //todo:后面可继续优化，当前是取客服接待人数最少的分配
                 var csDBList = dalRS.GetCSMinCount(diandian);
-                foreach (DZMembership customer in customerList)
+                foreach (Customer customer in customerList)
                 {
                     //assignList.Add(customer, dalRS.GetCSMinCount());
                     if (csList.Count > csDBList.Count)
                     {
-                        foreach(DZMembership cs in csList)
+                        foreach(CustomerService cs in csList)
                         {
                             if (!csDBList.Contains(cs))
                             {
@@ -496,13 +500,13 @@ namespace Dianzhu.BLL
         {
             manuallyCsId = csId;
         }
-        public Dictionary<DZMembership, DZMembership> Assign(IList<DZMembership> customerList, IList<DZMembership> csList, DZMembership diandian)
+        public Dictionary<Customer, CustomerService> Assign(IList<Customer> customerList, IList<CustomerService> csList, Diandian diandian)
         {
-            Dictionary<DZMembership, DZMembership> assignList = new Dictionary<DZMembership, DZMembership>();
+            Dictionary<Customer, CustomerService> assignList = new Dictionary<Customer, CustomerService>();
              
-                var assign = csList.Single(x => x.Id == manuallyCsId);
+                var assign = csList.Single(x => x.MemberId == manuallyCsId.ToString());
                 if (assign == null) { throw new NullReferenceException("该客服未登录."); }
-                foreach (DZMembership customer in customerList)
+                foreach (Customer customer in customerList)
                 {
                     assignList.Add(customer, assign);
                 }

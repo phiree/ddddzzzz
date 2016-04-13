@@ -57,17 +57,16 @@
     <Compile Include="GlobalViables.cs" />
     <Compile Include="InstantMessageHandler.cs" />
     <Compile Include="LoginPresenter.cs" />
-    <Compile Include="MainPresenter\MessageSender.cs" />
-    <Compile Include="MainPresenter\PNotice.cs" />
-    <Compile Include="MainPresenter\POrderHistory.cs" />
-    <Compile Include="MainPresenter\PMain.cs" />
-    <Compile Include="MainPresenter\PChatSend.cs" />
-    <Compile Include="MainPresenter\PChatList.cs" />
-    <Compile Include="MainPresenter\PIdentyList.cs" />
+    <Compile Include="Presenter\PNotice.cs" />
+    <Compile Include="Presenter\POrderHistory.cs" />
+    <Compile Include="Presenter\PMain.cs" />
+    <Compile Include="Presenter\PChatSend.cs" />
+    <Compile Include="Presenter\PChatList.cs" />
+    <Compile Include="Presenter\PIdentyList.cs" />
     <Compile Include="IdentityManager.cs" />
-    <Compile Include="MainPresenter\POrder.cs" />
-    <Compile Include="MainPresenter\PSearch.cs" />
-    <Compile Include="MainPresenter\State.cs" />
+    <Compile Include="Presenter\POrder.cs" />
+    <Compile Include="Presenter\PSearch.cs" />
+    <Compile Include="Presenter\State.cs" />
     <Compile Include="MessageLocalStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

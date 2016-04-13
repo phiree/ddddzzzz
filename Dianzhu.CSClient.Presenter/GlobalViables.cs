@@ -15,8 +15,8 @@ namespace Dianzhu.CSClient.Presenter
          /// <summary>
          /// 当前登录的客服
          /// </summary>
-         public static DZMembership CurrentCustomerService = null;
-        public static DZMembership Diandian = null;
+         public static CustomerService CurrentCustomerService = null;
+        public static Diandian Diandian = null;
         public static string MediaUploadUrl = Dianzhu.Config.Config.GetAppSetting("MediaUploadUrl");
         public static string MediaGetUrl = Dianzhu.Config.Config.GetAppSetting("MediaGetUrl");
         public static readonly string LocalMediaSaveDir =Environment.CurrentDirectory+ @"\localmedia\";

@@ -18,7 +18,7 @@ namespace Dianzhu.CSClient.IView
         /// 当前助理. 
         /// 用来确定消息的显示格式.
         /// </summary>
-        DZMembership CurrentCustomerService { get; set; }
+        CustomerService CurrentCustomerService { get; set; }
        event AudioPlay AudioPlay;
 
     }

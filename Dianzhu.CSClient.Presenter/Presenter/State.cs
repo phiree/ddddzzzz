@@ -11,6 +11,7 @@ using System.Collections;
 
 namespace Dianzhu.CSClient.Presenter
 {
+    /*
     /// <summary>
     /// 当前界面需要维护的状态值.
     /// </summary>
@@ -22,9 +23,9 @@ namespace Dianzhu.CSClient.Presenter
         //当前激活客户
         public static DZMembership CurrentCustomer = null;        
         //当前接待的 客户列表
-        public static IList<DZMembership> customerList = new List<DZMembership>();
+        public static IList<Customer> customerList = new List<DZMembership>();
         //在线的客户列表
-        public static IList<DZMembership> customerOnlineList = new List<DZMembership>();
+        public static IList<Customer> customerOnlineList = new List<DZMembership>();
 
         //当前界面内的订单
         public static ServiceOrder CurrentServiceOrder;
@@ -41,7 +42,7 @@ namespace Dianzhu.CSClient.Presenter
        
     }
 
-    
+    */
 
 }
 

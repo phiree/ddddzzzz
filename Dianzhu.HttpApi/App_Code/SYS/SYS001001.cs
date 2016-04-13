@@ -77,8 +77,8 @@ public class ResponseSYS001001:BaseResponse
         ReceptionChat chat = ReceptionChat.Create(chatType);
 
         chat.Id = new Guid(reqData.id);
-        chat.To = bllMember.GetUserById(new Guid(reqData.to));
-        chat.From = bllMember.GetUserById(new Guid(reqData.from));
+        chat.MemberIdTo = bllMember.GetUserById(new Guid(reqData.to));
+        chat.MemberIdFrom = bllMember.GetUserById(new Guid(reqData.from));
         chat.ServiceOrder = bllOrder.GetOne(new Guid(reqData.orderId));
         chat.MessageBody = reqData.body;
         chat.FromResource = (enum_XmppResource)Enum.Parse(typeof(enum_XmppResource), reqData.from_resource);
@@ -91,11 +91,11 @@ public class ResponseSYS001001:BaseResponse
             ((ReceptionChatMedia)chat).MedialUrl = mediaUrl;
             ((ReceptionChatMedia)chat).MediaType = mediaType;
         }
-        if (chat.To.UserType == enum_UserType.customerservice.ToString() || chat.From.UserType == enum_UserType.customerservice.ToString())
+        if (chat.MemberIdTo.UserType == enum_UserType.customerservice.ToString() || chat.MemberIdFrom.UserType == enum_UserType.customerservice.ToString())
         {
             chat.ChatTarget = enum_ChatTarget.cer;
         }
-        else if (chat.To.UserType == enum_UserType.business.ToString() || chat.From.UserType == enum_UserType.business.ToString())
+        else if (chat.MemberIdTo.UserType == enum_UserType.business.ToString() || chat.MemberIdFrom.UserType == enum_UserType.business.ToString())
         {
             chat.ChatTarget = enum_ChatTarget.store;
         }
@@ -113,7 +113,7 @@ public class ResponseSYS001001:BaseResponse
     {
         #region 保存聊天消息
 
-        DZMembership fromCustomer = isSend ? chat.To : chat.From;
+        DZMembership fromCustomer = isSend ? chat.MemberIdTo : chat.MemberIdFrom;
         string customerName = fromCustomer.UserName;
         string message = chat.MessageBody;
 
@@ -149,8 +149,8 @@ public class ResponseSYS001001:BaseResponse
         chatDD.MessageBody = chat.MessageBody;
         chatDD.ReceiveTime = chat.ReceiveTime;
         chatDD.SendTime = chat.SendTime;
-        chatDD.To = chat.To;
-        chatDD.From = chat.From;
+        chatDD.MemberIdTo = chat.MemberIdTo;
+        chatDD.MemberIdFrom = chat.MemberIdFrom;
          chatDD.SavedTime = DateTime.Now;
         chatDD.ChatType = chat.ChatType;
         chatDD.FromResource = chat.FromResource;

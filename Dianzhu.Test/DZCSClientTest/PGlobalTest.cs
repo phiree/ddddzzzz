@@ -44,7 +44,7 @@ namespace Dianzhu.Test.DZCSClientTest
             ServiceOrder order21 = ServiceOrderFactory.CreateDraft(customers[0], customers[2]);
 
             IList<ReceptionChat> chats = Builder<ReceptionChat>.CreateListOfSize(5)
-                .TheFirst(1).With(x => x.From = order11.Customer).And(x => x.ServiceOrder = order11)//新用户订单
+                .TheFirst(1).With(x => x.MemberIdFrom = order11.Customer).And(x => x.ServiceOrder = order11)//新用户订单
                 .TheNext(1).With(x => x.From = order11.Customer).And(x => x.ServiceOrder = order11)//同一订单
                 .TheNext(1).With(x => x.From = order12.Customer).And(x => x.ServiceOrder = order12)//同一用户，新订单
                 .TheNext(1).With(x => x.From = order21.Customer).And(x => x.ServiceOrder = order21)//不同用户，新订单

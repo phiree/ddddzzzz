@@ -25,10 +25,10 @@ namespace Dianzhu.BLL
         }
       
         
-        public IList<ReceptionChat> GetReceptionChatList(DZMembership from, DZMembership to
+        public IList<ReceptionChat> GetReceptionChatList(string memberIdfrom, string memberIdto
           ,Guid orderId, DateTime begin, DateTime end,int pageIndex,int pageSize, enum_ChatTarget target, out int rowCount)
         {
-            var list = DALReception.GetReceptionChatList(from, to,orderId, begin, end,pageIndex,pageSize, target,out rowCount);
+            var list = DALReception.GetReceptionChatList(memberIdfrom, memberIdto, orderId, begin, end,pageIndex,pageSize, target,out rowCount);
             return list;
         }
         public IList<ReceptionChat> GetChatListByOrder(Guid orderId, DateTime begin, DateTime end, int pageIndex, int pageSize, enum_ChatTarget target, out int rowCount)
@@ -36,10 +36,10 @@ namespace Dianzhu.BLL
 
             return GetReceptionChatList(null, null, orderId, begin, end, pageIndex, pageSize, target, out rowCount);
         }
-        public IList<ReceptionChat> GetReceptionChatListByTargetIdAndSize(DZMembership from, DZMembership to, Guid orderId, DateTime begin, DateTime end,
+        public IList<ReceptionChat> GetReceptionChatListByTargetIdAndSize(string memberIdfrom, string memberIdto, Guid orderId, DateTime begin, DateTime end,
              int pageSize, ReceptionChat targetChat, string low, enum_ChatTarget target)
         {
-            return DALReception.GetReceptionChatListByTargetIdAndSize(from, to, orderId, begin, end, pageSize, targetChat, low, target);
+            return DALReception.GetReceptionChatListByTargetIdAndSize(memberIdfrom, memberIdto, orderId, begin, end, pageSize, targetChat, low, target);
         }
     }
 

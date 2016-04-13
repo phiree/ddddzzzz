@@ -93,7 +93,7 @@ namespace Dianzhu.CSClient.Presenter
                     
                 case Model.Enums.enum_ChatType.UserStatus:
                     ReceptionChatUserStatus rcus = (ReceptionChatUserStatus)chat;
-                    pNotice.ShowNotice("用户" + rcus.User.DisplayName +
+                    pNotice.ShowNotice("用户" + rcus.MemberId +
                         (rcus.Status == Model.Enums.enum_UserStatus.available ? "已上线" : "已下线")
                         );
                     break;

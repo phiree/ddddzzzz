@@ -51,7 +51,7 @@ namespace Dianzhu.CSClient.ViewWPF
         {
             Action lamda = () =>
             {
-               bool isSender = chat.From.UserName ==currentCustomerService.UserName;
+               bool isSender = chat.MemberIdFrom ==currentCustomerService.MemberId;
                 Label lblTime = new Label();
                
                 lblTime.Foreground = new SolidColorBrush(Colors.Black);
@@ -66,7 +66,7 @@ namespace Dianzhu.CSClient.ViewWPF
                 else { pnlOneChat.FlowDirection = FlowDirection.LeftToRight; }
                       lblTime.Content = chat.SavedTime.ToShortTimeString() + " ";
 
-                lblFrom.Content = chat.From.UserName;
+                lblFrom.Content = chat.MemberIdFrom;
  
 
                 //显示多媒体信息.
@@ -217,11 +217,11 @@ namespace Dianzhu.CSClient.ViewWPF
             }
         }
 
-        DZMembership currentCustomerService;
+        CustomerService currentCustomerService;
 
         public event AudioPlay AudioPlay;
 
-        public DZMembership CurrentCustomerService
+        public CustomerService CurrentCustomerService
         {
             get
             {

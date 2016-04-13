@@ -54,11 +54,11 @@ namespace Dianzhu.CSClient.Presenter
             ReceptionChatNotice chatNotice = new ReceptionChatNotice
             {
                 ChatType = Model.Enums.enum_ChatType.Notice,
-                From =GlobalViables.CurrentCustomerService,
-                To = currentOrder.Customer,
+                MemberIdFrom =GlobalViables.CurrentCustomerService.MemberId,
+                MemberIdTo = currentOrder.Customer.MemberId,
                 SavedTime = DateTime.Now,
                 ServiceOrder = currentOrder,
-                UserObj = GlobalViables.CurrentCustomerService,
+                //UserObj = GlobalViables.CurrentCustomerService.MemberId,
                 MessageBody = "支付链接" + bllPayment.BuildPayLink(payment.Id),
                 SendTime = DateTime.Now
             };

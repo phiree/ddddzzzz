@@ -22,7 +22,7 @@ namespace Dianzhu.Model
         /// <summary>
         /// 从原始ID中提取出来的用户ID
         /// </summary>
-        public virtual Guid UserID { get; set; }
+        public virtual string MemberId { get; set; }
         /// <summary>
         /// 用户的状态
         /// </summary>

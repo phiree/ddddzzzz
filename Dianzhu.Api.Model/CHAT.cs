@@ -21,8 +21,8 @@ namespace Dianzhu.Api.Model
         public RespDataCHAT_chatObj Adapt(ReceptionChat chat)
         {
             this.id = chat.Id.ToString();
-            this.to = chat.To.Id.ToString();
-            this.from = chat.From.Id.ToString();
+            this.to = chat.MemberIdTo.Id.ToString();
+            this.from = chat.MemberIdFrom.Id.ToString();
             this.orderID = chat.ServiceOrder == null ? string.Empty : chat.ServiceOrder.Id.ToString();
             this.type = "chat";
             this.date = chat.SavedTime.ToString("yyyyMMddHHmmss");

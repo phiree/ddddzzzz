@@ -37,7 +37,7 @@ namespace Dianzhu.CSClient.ViewWPF
                 Button btnIdentity =(Button) pnlIdentityList.FindName(ctrlName);
                 if (btnIdentity == null)
                 {
-                    btnIdentity = new Button { Content = serviceOrder.Customer.DisplayName };
+                    btnIdentity = new Button { Content = serviceOrder.Customer.Name };
                     btnIdentity.Tag = serviceOrder;
 
                     btnIdentity.Name = ctrlName;

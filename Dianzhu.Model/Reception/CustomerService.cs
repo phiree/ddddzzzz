@@ -14,5 +14,8 @@ namespace Dianzhu.Model
         }
         public string MemberId { get; protected set; }
         public string Name { get; set; }
+        public string Avatar { get; protected set; }
+        public void ChangeAvatar()
+        { }
     }
 }

@@ -37,12 +37,12 @@ namespace Dianzhu.DAL
         /// <param name="pageSize"></param>
         /// <param name="rowCount"></param>
         /// <returns></returns>
-        public virtual IList<ReceptionChat> GetReceptionChatList(DZMembership from,DZMembership to, Guid orderId, DateTime timeBegin, DateTime timeEnd,
+        public virtual IList<ReceptionChat> GetReceptionChatList(string memberIdfrom,string memberIdto, Guid orderId, DateTime timeBegin, DateTime timeEnd,
             int pageIndex, int pageSize, enum_ChatTarget target, out int rowCount
             )
         {
 
-            var result = BuildReceptionChatQuery(from,to, orderId, timeBegin, timeEnd);
+            var result = BuildReceptionChatQuery(memberIdfrom, memberIdto, orderId, timeBegin, timeEnd);
             if(orderId!=Guid.Empty)
             {
                 result = result.And(x => x.ServiceOrder.Id == orderId);
@@ -71,7 +71,7 @@ namespace Dianzhu.DAL
             return receptionChatList;
         }
 
-        public virtual IList<ReceptionChat> GetReceptionChatListByTargetIdAndSize(DZMembership from, DZMembership to, Guid orderId, DateTime timeBegin, DateTime timeEnd,
+        public virtual IList<ReceptionChat> GetReceptionChatListByTargetIdAndSize(string memberIdfrom, string memberIdto, Guid orderId, DateTime timeBegin, DateTime timeEnd,
              int pageSize, ReceptionChat targetChat, string low, enum_ChatTarget target)
         {
             var result = Session.QueryOver<ReceptionChat>();
@@ -92,15 +92,16 @@ namespace Dianzhu.DAL
             {
                 result = result.Where(x => x.SavedTime > targetChat.SavedTime).OrderBy(x => x.SavedTime).Desc;
             }
-            if (to != null)
+            if (!string.IsNullOrEmpty(memberIdto))
             {
-                result = result.And(x => (x.From == from && x.To == to) || (x.From == to && x.To == from));
+                result = result.And(x => (x.MemberIdFrom == memberIdfrom && x.MemberIdTo == memberIdto) 
+                || (x.MemberIdFrom == memberIdto && x.MemberIdTo == memberIdfrom));
             }
             else
             {
-                if (from != null)
+                if (!string.IsNullOrEmpty(memberIdfrom))
                 {
-                    result = result.And(x => (x.From == from || x.To == from));
+                    result = result.And(x => (x.MemberIdFrom == memberIdfrom || x.MemberIdTo == memberIdfrom));
                 }
             }
             if (orderId != Guid.Empty)
@@ -114,18 +115,19 @@ namespace Dianzhu.DAL
             return receptionChatList;
         }
 
-        private IQueryOver<ReceptionChat, ReceptionChat> BuildReceptionChatQuery(DZMembership from,DZMembership to, Guid orderId, DateTime timeBegin, DateTime timeEnd)
+        private IQueryOver<ReceptionChat, ReceptionChat> BuildReceptionChatQuery(string  memberIdfrom,string memberIdto, Guid orderId, DateTime timeBegin, DateTime timeEnd)
         {
             var result = Session.QueryOver<ReceptionChat>().Where(x => x.SavedTime >= timeBegin)
                 .And(x => x.SavedTime <= timeEnd);
-            if (to != null) {
-                result= result.And(x => (x.From == from && x.To == to) || (x.From == to && x.To == from));
+            if (!string.IsNullOrEmpty(memberIdto) ){
+                result= result.And(x => (x.MemberIdFrom == memberIdfrom && x.MemberIdTo == memberIdto) 
+                || (x.MemberIdFrom == memberIdto && x.MemberIdTo == memberIdfrom));
             }
             else
             {
-                if(from!=null)
+                if(memberIdfrom!=null)
                 {  
-                result = result.And(x => (x.From == from || x.To ==from));
+                result = result.And(x => (x.MemberIdFrom == memberIdfrom || x.MemberIdTo ==memberIdfrom));
                 }
             }
             if (orderId != Guid.Empty)

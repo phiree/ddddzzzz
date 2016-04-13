@@ -17,8 +17,8 @@ namespace Dianzhu.DAL.Mapping
             Map(x => x.MessageBody);
             Map(x => x.ReceiveTime);
             Map(x => x.SendTime);
-            References<DZMembership>(x => x.To);
-            References<DZMembership>(x => x.From);
+            References<DZMembership>(x => x.MemberIdTo);
+            References<DZMembership>(x => x.MemberIdFrom);
             References<ServiceOrder>(x => x.ServiceOrder);
             Map(x => x.ChatType).CustomType<Model.Enums.enum_ChatType>();
             Map(x => x.Version);
@@ -37,8 +37,8 @@ namespace Dianzhu.DAL.Mapping
             Map(x => x.MessageBody);
             Map(x => x.ReceiveTime);
             Map(x => x.SendTime);
-            References<DZMembership>(x => x.To);
-            References<DZMembership>(x => x.From);
+            References<DZMembership>(x => x.MemberIdTo);
+            References<DZMembership>(x => x.MemberIdFrom);
             References<ServiceOrder>(x => x.ServiceOrder);
             Map(x => x.ChatType).CustomType<int>();
             Map(x => x.Version);
@@ -76,7 +76,7 @@ namespace Dianzhu.DAL.Mapping
     {
         public ReceptionChatUserStatusMap()
         {
-            References<DZMembership>(x => x.User);
+            References<DZMembership>(x => x.MemberId);
             Map(x => x.Status).CustomType<Model.Enums.enum_ChatTarget>();
         }
     }
