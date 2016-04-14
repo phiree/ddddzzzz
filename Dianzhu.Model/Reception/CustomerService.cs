@@ -7,15 +7,16 @@ namespace Dianzhu.Model
 {
    public class CustomerService
     {
+        protected CustomerService() { }
         public CustomerService(string memberId,string name)
         {
             this.MemberId = memberId;
             this.Name = name;
         }
-        public string MemberId { get; protected set; }
-        public string Name { get; set; }
-        public string Avatar { get; protected set; }
-        public void ChangeAvatar()
+        public virtual string MemberId { get; protected set; }
+        public virtual string Name { get; set; }
+        public virtual string Avatar { get; protected set; }
+        public virtual void ChangeAvatar()
         { }
     }
 }

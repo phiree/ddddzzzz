@@ -301,7 +301,7 @@ namespace Dianzhu.BLL
             else
             {
                 var password_cred = FormsAuthentication.HashPasswordForStoringInConfigFile(password, "MD5");
-                DZMembership newMember = new DZMembership(savedUserName, password_cred, userEmail, userPhone);
+                DZMembership newMember =  DZMembership.Create (savedUserName, password_cred, userEmail, userPhone);
                 if (validateCode != Guid.Empty)
                 {
                     newMember.RegisterValidateCode = validateCode.ToString();

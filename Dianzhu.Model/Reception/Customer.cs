@@ -13,8 +13,8 @@ namespace Dianzhu.Model
         /// <summary>
         ///ddd: accessidentity认证的id
         /// </summary>
-        public string MemberId { get; protected set; }
-        public string Name { get; set; }
+        public virtual string MemberId { get; protected set; }
+        public virtual string Name { get; set; }
         
     }
 }

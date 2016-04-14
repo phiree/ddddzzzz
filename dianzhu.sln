@@ -270,6 +270,29 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RisCaptureLib", "RisCapture
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{2BC5F143-B815-4011-961E-E44A2D3B87C2}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CustomerServiceWeb", "CustomerServiceWeb\", "{C959F85B-764B-4F4C-A76A-71B1866796F5}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		ProjectReferences = "{0974351e-8b26-4b3c-8c4d-7d6f0354ba2c}|Dianzhu.BLL.dll;{489E4EB5-E576-4AB0-9B45-FB015A8C84F5}|Dianzhu.Config.dll;{2E67AA78-6780-42BD-A3AB-AD953781E511}|Dianzhu.DAL.dll;{84187F7C-DD53-4895-A7FF-191E76756009}|Dianzhu.Model.dll;{6819D627-FE58-4E8E-AC89-E0EB01FCFE74}|Dianzhu.Pay.dll;{0122C6D5-6348-4B65-88B7-3C43A6E642F3}|PHSuit.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_3851"
+		Debug.AspNetCompiler.PhysicalPath = "CustomerServiceWeb\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_3851\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_3851"
+		Release.AspNetCompiler.PhysicalPath = "CustomerServiceWeb\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_3851\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "3851"
+		SlnRelativePath = "CustomerServiceWeb\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -684,6 +707,18 @@ Global
 		{DE79C6AB-B5A9-4BAF-80FA-22835452785F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{DE79C6AB-B5A9-4BAF-80FA-22835452785F}.Release|x86.ActiveCfg = Release|Any CPU
 		{DE79C6AB-B5A9-4BAF-80FA-22835452785F}.Release|x86.Build.0 = Release|Any CPU
+		{C959F85B-764B-4F4C-A76A-71B1866796F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C959F85B-764B-4F4C-A76A-71B1866796F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C959F85B-764B-4F4C-A76A-71B1866796F5}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C959F85B-764B-4F4C-A76A-71B1866796F5}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C959F85B-764B-4F4C-A76A-71B1866796F5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C959F85B-764B-4F4C-A76A-71B1866796F5}.Debug|x86.Build.0 = Debug|Any CPU
+		{C959F85B-764B-4F4C-A76A-71B1866796F5}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{C959F85B-764B-4F4C-A76A-71B1866796F5}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{C959F85B-764B-4F4C-A76A-71B1866796F5}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C959F85B-764B-4F4C-A76A-71B1866796F5}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C959F85B-764B-4F4C-A76A-71B1866796F5}.Release|x86.ActiveCfg = Debug|Any CPU
+		{C959F85B-764B-4F4C-A76A-71B1866796F5}.Release|x86.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -724,6 +759,7 @@ Global
 		{F399FE2F-05A1-41B6-AB63-C879A1701DC4} = {E4338C9B-90F1-4640-A650-F903E722C878}
 		{6931F336-83BE-4E6C-A945-588D636E5C73} = {8C7F0677-6F4E-4C27-B896-6D299BC5E4FA}
 		{DE79C6AB-B5A9-4BAF-80FA-22835452785F} = {8C7F0677-6F4E-4C27-B896-6D299BC5E4FA}
+		{C959F85B-764B-4F4C-A76A-71B1866796F5} = {9997B328-FAC6-4192-84BE-BA83D2870CD4}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = TourGuideExam.vsmdi

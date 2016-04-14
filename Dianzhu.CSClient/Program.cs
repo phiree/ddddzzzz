@@ -109,7 +109,7 @@ namespace Dianzhu.CSClient
                 );
             mainForm.Title += "v" + version;
 
-            mainForm.ShowDialog()
+            mainForm.ShowDialog();
             //Application.Run(new Views.Raw.ChatView());
 
             //var mainForm = new WPF.FormMain();
@@ -147,6 +147,7 @@ namespace Dianzhu.CSClient
         {
 
             log.Error("异常崩溃:" + e.ExceptionObject.ToString());
+            PHSuit.ExceptionLoger.ExceptionLog(log, e.ExceptionObject as Exception);
             MessageBox.Show(e.ExceptionObject.ToString());
         }
         static string GetVersion()

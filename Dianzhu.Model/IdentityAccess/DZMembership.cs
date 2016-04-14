@@ -21,20 +21,26 @@ namespace Dianzhu.Model
              LastLoginTime=  TimeCreated = DateTime.Now;
             
         }
-        public DZMembership(string username,string encryptedPassword,string email,string phone):this()
+        protected DZMembership(string username,string encryptedPassword,string email,string phone):this()
         {
             this.UserName = username;
             this.Password = encryptedPassword;
             this.Email = email;
             this.Phone = phone;
         }
-        
+        public static  DZMembership Create(string username, string encryptedPassword, string email, string phone)
+        {
+            DZMembership member = new DZMembership(username, encryptedPassword, email, phone);
+            member.Id = Guid.NewGuid();
+            return member;
+        }
+
         /// <summary>
         /// 创建一个认证凭据
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public static DZMembership Create3rdUser(enum_LoginType type)
+        public  static DZMembership Create3rdUser(enum_LoginType type)
         {
             switch (type)
             {

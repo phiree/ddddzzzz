@@ -9,6 +9,8 @@ namespace Dianzhu.Model {
     /// </summary>
    public class BusinessUser
     {
+        protected BusinessUser()
+        { }
         /// <summary>
         /// 创建一个商户帐号
         /// </summary>
@@ -23,7 +25,7 @@ namespace Dianzhu.Model {
         /// <summary>
         /// 会员id,来自IA
         /// </summary>
-        public string MemberId { get; protected set; }
+        public virtual string MemberId { get; protected set; }
         public virtual string NickName { get; set; }
         public virtual string Address { get; set; }
         

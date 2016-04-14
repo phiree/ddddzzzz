@@ -7,11 +7,12 @@ namespace Dianzhu.Model
 {
    public class Diandian:CustomerService
     {
+        protected Diandian() { }
         public Diandian(string memberId, string name):base(memberId,"点点")
         {
             
         }
-        public string MemberId { get; set; }
+        public virtual string MemberId { get; set; }
         
     }
 }

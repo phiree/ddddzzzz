@@ -11,6 +11,7 @@ namespace Dianzhu.Model
     /// </summary>
     public class Business_Abs
     {
+
         public static Business_Abs Create(string type, BusinessUser businessUser)
         {
             
@@ -25,6 +26,8 @@ namespace Dianzhu.Model
                 default:throw new NotImplementedException("未知的店铺类型");
             }
         }
+        protected Business_Abs()
+        { }
         public Business_Abs(BusinessUser owner)
         {
             Owner = owner;
@@ -79,6 +82,8 @@ namespace Dianzhu.Model
     /// </summary>
     public class Business : Business_Abs
     {
+        protected Business()
+        { }
         public Business(BusinessUser owner):base( owner)
         {
             AreaServiceTo = new List<Area>();

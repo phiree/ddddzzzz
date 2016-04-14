@@ -84,6 +84,7 @@
     <Compile Include="DALFactory.cs" />
     <Compile Include="DZRoleProvidercs.cs" />
     <Compile Include="FormModel\FormBusiness.cs" />
+    <Compile Include="Reception\CustomerServiceService.cs" />
     <Compile Include="IdentityAccess\DZMembershipProvider.cs" />
     <Compile Include="IdentityAccess\RoleDto.cs" />
     <Compile Include="IdentityAccess\RoleService.cs" />
