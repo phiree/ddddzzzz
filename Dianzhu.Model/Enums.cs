@@ -494,21 +494,7 @@ namespace Dianzhu.Model.Enums
         Unknow = 100,
     }
 
-    /// <summary>
-    /// 登录用户类型
-    /// </summary>
-    public enum enum_LoginType
-    {
-        /// <summary>
-        /// 原生登录用户
-        /// </summary>
-        original=0,
-
-        //第三方登录用户
-        WeChat=1,
-        SinaWeiBo=2,
-        TencentQQ=3,
-    }
+   
 
     /// <summary>
     /// 支付状态
