@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace IdentityAccess.ApplicationService.Membership
 {
-   public  class MembershipDto
+  public   interface IMembershipService
     {
+        void Register(MembershipDto membership);
     }
 }

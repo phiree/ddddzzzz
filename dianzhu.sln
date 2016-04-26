@@ -319,6 +319,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csp
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "IdentityAccess.OHS", "IdentityAccess.OHS\IdentityAccess.OHS.xproj", "{85AE6633-FD15-4C73-99F2-5E2771BBBA17}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resource", "Resource\Resource.csproj", "{8D96525E-A209-4AB1-BD52-BF2EBCA26894}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1023,6 +1025,24 @@ Global
 		{85AE6633-FD15-4C73-99F2-5E2771BBBA17}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{85AE6633-FD15-4C73-99F2-5E2771BBBA17}.Release|x86.ActiveCfg = Release|Any CPU
 		{85AE6633-FD15-4C73-99F2-5E2771BBBA17}.Release|x86.Build.0 = Release|Any CPU
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894}.Debug|x86.Build.0 = Debug|Any CPU
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894}.Dev|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894}.Dev|Any CPU.Build.0 = Debug|Any CPU
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894}.Dev|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894}.Dev|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894}.Dev|x86.ActiveCfg = Debug|Any CPU
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894}.Dev|x86.Build.0 = Debug|Any CPU
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894}.Release|x86.ActiveCfg = Release|Any CPU
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1084,6 +1104,7 @@ Global
 		{398D99F9-57D9-4B84-B9A4-798ED65246DF} = {08C63051-F951-4332-A1DB-D7F4BADAFC95}
 		{AFE0B3C6-F96E-48B4-A29E-1C5552C25ED4} = {91CE7C68-9300-4E32-BAAB-E4FFF9A320E1}
 		{85AE6633-FD15-4C73-99F2-5E2771BBBA17} = {08C63051-F951-4332-A1DB-D7F4BADAFC95}
+		{8D96525E-A209-4AB1-BD52-BF2EBCA26894} = {C851CE5A-2078-41A0-B716-5275EB48BF58}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = TourGuideExam.vsmdi

@@ -25,8 +25,9 @@ namespace IdentityAccess.OHS.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]IdentityAccess.ApplicationService.Membership.MembershipDto membershipDto)
         {
+            
         }
 
         // PUT api/values/5
