@@ -9,12 +9,13 @@ namespace Resource.DomainModel
     public class BusinessUser 
     {
         public string IdentityId { get; protected set; }
-        public string BusinessRealName { get; protected set; }
+        public string RealName { get; protected set; }
 
-        public BusinessUser(string identityId, string businessRealName)
+        public BusinessUser(string identityId, string realName)
         {
             this.IdentityId = identityId;
-            this.BusinessRealName = businessRealName;
+            this.RealName = realName;
         }
+         
     }
 }

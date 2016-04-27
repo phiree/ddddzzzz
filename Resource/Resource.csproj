@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationService\BusinessUser\BusinessUserDto.cs" />
     <Compile Include="ApplicationService\BusinessUser\BusinessUserService.cs" />
+    <Compile Include="ApplicationService\BusinessUser\IBusinessUserService.cs" />
     <Compile Include="DomainModel\Agent.cs" />
     <Compile Include="DomainModel\BusinessUser.cs" />
     <Compile Include="DomainModel\ServiceItem.cs" />

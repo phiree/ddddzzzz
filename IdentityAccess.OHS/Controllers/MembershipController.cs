@@ -36,7 +36,7 @@ namespace IdentityAccess.OHS.Controllers
 
 
         // POST: Membership/Create
-        [HttpPost]
+        [HttpPut]
         public Response<MembershipDto> Create([FromBody] MembershipDto member)
         {
             Response<MembershipDto> response = new Response<MembershipDto>();

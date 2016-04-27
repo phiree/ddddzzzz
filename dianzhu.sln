@@ -364,6 +364,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebAdmin(2)", "Application\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityAccess.OHS", "IdentityAccess.OHS\IdentityAccess.OHS.csproj", "{B2171221-4A7B-417B-A0EF-2C1FBA1B46E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resource.OHS", "Resource.OHS\Resource.OHS.csproj", "{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1122,6 +1124,24 @@ Global
 		{B2171221-4A7B-417B-A0EF-2C1FBA1B46E7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B2171221-4A7B-417B-A0EF-2C1FBA1B46E7}.Release|x86.ActiveCfg = Release|Any CPU
 		{B2171221-4A7B-417B-A0EF-2C1FBA1B46E7}.Release|x86.Build.0 = Release|Any CPU
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}.Debug|x86.Build.0 = Debug|Any CPU
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}.Dev|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}.Dev|Any CPU.Build.0 = Debug|Any CPU
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}.Dev|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}.Dev|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}.Dev|x86.ActiveCfg = Debug|Any CPU
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}.Dev|x86.Build.0 = Debug|Any CPU
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}.Release|x86.ActiveCfg = Release|Any CPU
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1186,6 +1206,7 @@ Global
 		{F1B0343A-C275-4179-BE44-CB625325D1BB} = {CAEC732B-E98D-470C-9DB7-992ED27326E9}
 		{E5A30F4F-F70D-4C17-9853-F078BC69CE31} = {CAEC732B-E98D-470C-9DB7-992ED27326E9}
 		{B2171221-4A7B-417B-A0EF-2C1FBA1B46E7} = {08C63051-F951-4332-A1DB-D7F4BADAFC95}
+		{7E3ED3F9-8ABE-4664-B1EE-9DDB8749D513} = {C851CE5A-2078-41A0-B716-5275EB48BF58}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = TourGuideExam.vsmdi
