@@ -17,9 +17,18 @@ namespace IdentityAccess.ApplicationService.Membership
             this.repoMembership = repoMembership;
         }
 
-        public void Register(MembershipDto membershipDto)
+        public MembershipDto Register(MembershipDto membershipDto)
         {
-           // Domain.Membership.Create(membershipDto.)
+           Domain.Membership member= Domain.Membership.Create(membershipDto.UserName, "pwd", "email", "phone");
+            membershipDto.Id = "12";
+            return membershipDto;
+
+        }
+        public MembershipDto FindById(string id)
+        {
+          Domain.Membership member=  repoMembership.FindById(id);
+            MembershipDto dto = new MembershipDto { UserName = member.UserName };
+            return dto;
         }
 
         

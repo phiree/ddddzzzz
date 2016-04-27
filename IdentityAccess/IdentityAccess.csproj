@@ -63,6 +63,7 @@
     <Compile Include="DomainModel\RoleMember.cs" />
     <Compile Include="DomainService\IEncryptService.cs" />
     <Compile Include="Infrastructure\MD5Encrypter.cs" />
+    <Compile Include="Infrastructure\MembershipRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

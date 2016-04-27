@@ -8,6 +8,7 @@ namespace IdentityAccess.ApplicationService.Membership
 {
   public   interface IMembershipService
     {
-        void Register(MembershipDto membership);
+        MembershipDto Register(MembershipDto membership);
+        MembershipDto FindById(string id);
     }
 }

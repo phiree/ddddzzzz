@@ -10,6 +10,7 @@
         密码:<asp:TextBox runat="server" ID="tbxPwd"></asp:TextBox>
     </div>
     <div>
+       
         <asp:Button runat="server" ID="btnLogin" Text="登录" />
     </div>
 </asp:Content>

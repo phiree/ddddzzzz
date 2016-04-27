@@ -10,7 +10,7 @@ namespace Common.Repository
     public interface IRepository<TEntity> 
         where TEntity : IDomainEntity
     {
-        TEntity FindById(Guid id);
+        TEntity FindById(string id);
         TEntity FindOne(ISpecification<TEntity> spec);
         IEnumerable<TEntity> Find(ISpecification<TEntity> spec);
         void Add(TEntity entity);
